@@ -85,10 +85,11 @@ function getCurrentPositionId(){
 	xhr.onreadystatechange = function (data) {
 		if(jdata==null){
 			var tmp=xhr.responseText;
-			
-			jdata = JSON.parse(tmp)["results"][0];
-			loc_id = jdata["place_id"];
-			alert("current_id: " + loc_id);
+			if(tmp!=""){
+				jdata = JSON.parse(tmp)["results"][0];
+				loc_id = jdata["place_id"];
+				alert("current_id: " + loc_id);
+			}
 		}
 	}
 	xhr.send();	
