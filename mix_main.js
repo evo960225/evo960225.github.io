@@ -106,13 +106,13 @@ function initialize() {
 	infoWindow = new google.maps.InfoWindow({map: map});
 	
 	initDestinationEvent();
-	
+	getCurrentPosition();
 	var test = setInterval(function(){
 		getCurrentPosition();
 		getPositionId(current_pos);
 		showInfo(current_pos,'current_pos');
-		}, 500);
-	setTimeout(function() {map.setCenter(current_pos);}, 600);
+	}, 500);
+	setTimeout(function() {map.setCenter(current_pos);}, 200);
 
 }
 
