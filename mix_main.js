@@ -1,5 +1,5 @@
 var map = null;
-var current_pos;
+
 var loc_id = "";
 var directionsDisplay;
 var directionsService = new google.maps.DirectionsService();
@@ -56,6 +56,8 @@ function initDestinationEvent(){
   });
 }
 	
+	
+var current_pos;	
 function getCurrentPosition(){
 	if (navigator.geolocation) {
 		navigator.geolocation.getCurrentPosition(function(position) {
@@ -63,10 +65,6 @@ function getCurrentPosition(){
 				lat: position.coords.latitude,
 				lng: position.coords.longitude
 			};
-
-			infoWindow.setPosition(current_pos);
-			infoWindow.setContent('Location found.');
-			map.setCenter(current_pos);
 		}, function() {
 			  handleLocationError(true, infoWindow, map.getCenter());
 			});
@@ -76,9 +74,9 @@ function getCurrentPosition(){
 	}
 }
 
-function getCurrentPositionId(){
+function getPositionId(pos){
 	var xhr = new XMLHttpRequest();
-	var url = 'https://maps.googleapis.com/maps/api/geocode/json?latlng=22.9874476,120.2423822&sensor=false';
+	var url = 'https://maps.googleapis.com/maps/api/geocode/json?latlng=' + pos.lat + ',' + pos.lng +'&sensor=false';
 	var jdata = null;
 	
 	xhr.open('GET', url);
@@ -88,11 +86,15 @@ function getCurrentPositionId(){
 			if(tmp!=""){
 				jdata = JSON.parse(tmp)["results"][0];
 				loc_id = jdata["place_id"];
-				alert("current_id: " + loc_id);
 			}
 		}
 	}
 	xhr.send();	
+}
+
+function showInfo(pos,content){
+	infoWindow.setPosition(pos);
+	infoWindow.setContent(content);
 }
 
 function initialize() {
@@ -105,10 +107,13 @@ function initialize() {
 	
 	initDestinationEvent();
 	
-	getCurrentPosition();
-	
-	getCurrentPositionId();
-	
+	var test = setInterval(function(){
+		getCurrentPosition();
+		getPositionId(current_pos);
+		showInfo(current_pos,'current_pos');
+		}, 500);
+	setTimeout(function() {map.setCenter(current_pos);}, 600);
+
 }
 
 function handleLocationError(browserHasGeolocation, infoWindow, pos) {
@@ -117,6 +122,7 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 						'Error: The Geolocation service failed.' :
 						'Error: Your browser doesn\'t support geolocation.');
 }
+
 
 function calcRoute() {
 	
