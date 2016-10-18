@@ -110,7 +110,7 @@ function initialize() {
 	var test = setInterval(function(){
 		getCurrentPosition();
 		getPositionId(current_pos);
-		showInfo(current_pos,'current_pos');
+		showInfo(current_pos,'Current Location');
 	}, 500);
 	setTimeout(function() {map.setCenter(current_pos);}, 200);
 
