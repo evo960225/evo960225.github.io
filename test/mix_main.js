@@ -1,6 +1,4 @@
 var map = null;
-
-var loc_id = "";
 var directionsDisplay;
 var directionsService = new google.maps.DirectionsService();
 var infoWindow;
@@ -74,6 +72,7 @@ function getCurrentPosition(){
 	}
 }
 
+var current_id = "";
 function getPositionId(pos){
 	var xhr = new XMLHttpRequest();
 	var url = 'https://maps.googleapis.com/maps/api/geocode/json?latlng=' + pos.lat + ',' + pos.lng +'&sensor=false';
@@ -85,7 +84,7 @@ function getPositionId(pos){
 			var tmp=xhr.responseText;
 			if(tmp!=""){
 				jdata = JSON.parse(tmp)["results"][0];
-				loc_id = jdata["place_id"];
+				current_id = jdata["place_id"];
 			}
 		}
 	}
@@ -97,6 +96,112 @@ function showInfo(pos,content){
 	infoWindow.setContent(content);
 }
 
+function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+	 infoWindow.setPosition(pos);
+	 infoWindow.setContent(browserHasGeolocation ?
+						'Error: The Geolocation service failed.' :
+						'Error: Your browser doesn\'t support geolocation.');
+}
+
+var cur_distance = 0;
+var end_pos;
+function calcRoute() {
+	
+	var end_pos = document.getElementById('end').value;
+	var request = {
+		origin: {'placeId': current_id},
+		destination: end_pos,
+		travelMode: google.maps.DirectionsTravelMode.WALKING
+	};
+	directionsService.route(request, function(response, status) {
+		if (status == google.maps.DirectionsStatus.OK) {
+			var data = response.routes[0].legs[0].steps;
+			var view = document.getElementById("instructions");
+			view.innerHTML = data[0].instructions;
+			
+			
+			var i=1;
+			var distance = data[0].distance.value;
+			while(i<data.length && data[i].maneuver==""){
+				distance += data[++i].distance.value;
+				view.innerHTML += data[i].instructions;
+			}
+			
+			var vdis = document.getElementById("distance");
+			vdis.innerHTML = cur_distance + "尺";
+			
+			var vdir = document.getElementById("txt_direction");
+			vdir.innerText = data[i].maneuver;
+			
+			if(distance<=500){
+				var msec=1000;
+				if(distance<=100){msec=200;}
+				else if(distance<=200){msec=500;}
+				else if(distance<=300){msec=1000;}
+				else if(distance<=400){msec=2000;}
+				show_direction(data[i].maneuver,msec);
+			}else if(distance>500){
+				stop_direction();
+				
+			}
+			cur_distance=distance;
+			
+			directionsDisplay.setDirections(response);
+		}
+	});
+    
+}
+
+var showEvent;
+var hideEvent;
+function show_direction(direction,msec){
+	//clearInterval(showEvent);
+	//clearInterval(hideEvent);
+	if(direction=="turn-left"){
+		var view = document.getElementById("left");
+		view.innerText="＜"+msec;
+		var view = document.getElementById("right");
+		view.innerText=0+"＞";
+		//showEvent = setInterval(function(){ display_left(true); }, msec);
+		//hideEvent = setInterval(function(){ display_left(false); }, msec);
+	}else if(direction=="turn-right"){
+		var view = document.getElementById("right");
+		view.innerText=msec+"＞";
+		var view = document.getElementById("left");
+		view.innerText="＜"+0;
+		//showEvent = setInterval(function(){ display_right(true); }, msec);
+		//hideEvent = setInterval(function(){ display_right(false); }, msec);
+	}
+	
+}
+function stop_direction(){
+	/*clearInterval(showEvent);
+	clearInterval(hideEvent);
+	display_left(true);
+	display_right(true);*/
+	var view = document.getElementById("left");
+		view.innerText="＜"+0;
+	var view = document.getElementById("right");
+		view.innerText=0+"＞";
+}
+function display_right(isblock){
+	var view = document.getElementById("right");
+	if(isblock){
+		view.style.display="block";
+	}else{
+		view.style.display="none";
+	}
+}
+function display_left(isblock){
+	var view = document.getElementById("left");
+	if(isblock){
+		view.style.display="block";
+	}else{
+		view.style.display="none";
+	}
+}
+
+
 function initialize() {
 
 	initDisplay();
@@ -107,41 +212,14 @@ function initialize() {
 	
 	initDestinationEvent();
 	
-	
-	//var myVar = setInterval(getCurrentPosition, 1000);
 	getCurrentPosition();
-	/*setInterval(function(){
-		current_pos.lat+=0.00005;
-		}, 1000);*/
+
 	
 	var test = setInterval(function(){
 		getPositionId(current_pos);
 		showInfo(current_pos,'current_pos');
+		calcRoute();
 		}, 500);
 	setTimeout(function() {map.setCenter(current_pos);}, 500);
-
-}
-
-function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-	 infoWindow.setPosition(pos);
-	 infoWindow.setContent(browserHasGeolocation ?
-						'Error: The Geolocation service failed.' :
-						'Error: Your browser doesn\'t support geolocation.');
-}
-
-
-function calcRoute() {
 	
-	var end = document.getElementById('end').value;
-	var request = {
-		origin: {'placeId': loc_id},
-		destination: end,
-		travelMode: google.maps.DirectionsTravelMode.WALKING
-	};
-	directionsService.route(request, function(response, status) {
-	if (status == google.maps.DirectionsStatus.OK) {
-		directionsDisplay.setDirections(response);
-		}
-	});
-    
 }
