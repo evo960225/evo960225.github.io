@@ -125,6 +125,7 @@ function initialize() {
 		}
 	}, 300);
     
+	UiSettings.setCompassEnabled(true);
 }
 
 function handleLocationError(browserHasGeolocation, infoWindow, pos) {
