@@ -113,12 +113,17 @@ function initialize() {
 		showInfo(current_pos,'Current Location');
 	}, 500);
 	
+	
+	int times = 0;
 	var tmp = setInterval(function() {
 		if(current_pos!=null){
-			map.setCenter(current_pos);
-			clearInterval(refreshIntervalId);
+			times += 1;
+			if(times>3){
+			  map.setCenter(current_pos);
+			  clearInterval(tmp);
+			}
 		}
-	}, 500);
+	}, 300);
     
 }
 
