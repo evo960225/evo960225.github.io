@@ -12,7 +12,7 @@
 	</style>
 	<script>
 	if(window.DeviceOrientationEvent) {
-		window.addEventListener('deviceorientation', function(event) {
+		$(window).on('deviceorientation', function(event) {
       var a = document.getElementById('alpha'),
       		b = document.getElementById('beta'),
       		g = document.getElementById('gamma'),
