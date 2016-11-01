@@ -114,7 +114,7 @@ function initialize() {
 	}, 500);
 	
 	
-	int times = 0;
+	var times = 0;
 	var tmp = setInterval(function() {
 		if(current_pos!=null){
 			times += 1;
