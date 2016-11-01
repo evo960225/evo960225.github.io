@@ -112,7 +112,7 @@ function initialize() {
 		getPositionId(current_pos);
 		showInfo(current_pos,'Current Location');
 	}, 500);
-	setTimeout(function() {map.setCenter(current_pos);}, 200);
+	setTimeout(function() {map.setCenter(current_pos);}, 500);
 
 }
 
