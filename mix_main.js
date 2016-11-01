@@ -57,7 +57,7 @@ function initDestinationEvent(){
 }
 	
 	
-var current_pos;	
+var current_pos = null;	
 function getCurrentPosition(){
 	if (navigator.geolocation) {
 		navigator.geolocation.getCurrentPosition(function(position) {
@@ -112,8 +112,14 @@ function initialize() {
 		getPositionId(current_pos);
 		showInfo(current_pos,'Current Location');
 	}, 500);
-	setTimeout(function() {map.setCenter(current_pos);}, 500);
-
+	
+	var tmp = setInterval(function() {
+		if(current_pos!=null){
+			map.setCenter(current_pos);
+			clearInterval(refreshIntervalId);
+		}
+	}, 500);
+    
 }
 
 function handleLocationError(browserHasGeolocation, infoWindow, pos) {
