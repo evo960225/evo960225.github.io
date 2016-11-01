@@ -125,10 +125,6 @@ function initialize() {
 		}
 	}, 300);
     	
-	var mapUI = map.getUiSettings();
-	mapUI.setCompassEnabled(true);
-	mapUI.setAllGesturesEnabled(true);
-	mapUI.setCompassEnabled(true);
 
 }
 
