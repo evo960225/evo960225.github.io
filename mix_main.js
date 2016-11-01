@@ -124,8 +124,12 @@ function initialize() {
 			}
 		}
 	}, 300);
-    
-	UiSettings.setCompassEnabled(true);
+    	
+	UiSettings mapUI = map.getUiSettings();
+	mapUI.setCompassEnabled(true);
+	mapUI.setAllGesturesEnabled(true);
+	mapUI.setCompassEnabled(true);
+
 }
 
 function handleLocationError(browserHasGeolocation, infoWindow, pos) {
