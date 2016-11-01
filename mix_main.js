@@ -125,7 +125,7 @@ function initialize() {
 		}
 	}, 300);
     	
-	UiSettings mapUI = map.getUiSettings();
+	var mapUI = map.getUiSettings();
 	mapUI.setCompassEnabled(true);
 	mapUI.setAllGesturesEnabled(true);
 	mapUI.setCompassEnabled(true);
