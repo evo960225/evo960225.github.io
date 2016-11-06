@@ -2,11 +2,19 @@
   <head>
   <script>
 	function onButtonClick() {
-	  navigator.bluetooth.requestDevice({ filters: [{ services: ['battery_service'] }] })
-.then(device => { /* ... */ }).catch(error => { console.log(error); });
+	//let filter = [];
+	  navigator.bluetooth.requestDevice({ 
+		filters: [{ services: ['battery_service'] }] })
+		.then(
+		device => { 
+			console.log('Name: ' + device.name); }
+		).catch(
+		error => {
+		 console.log(error); 
+		});
 
-	  let filters = [];
-
+	  
+	/*
 	  let filterService = document.querySelector('#service').value;
 	  if (filterService.startsWith('0x')) {
 	    filterService = parseInt(filterService);
@@ -22,8 +30,8 @@
 	  if (filterNamePrefix) {
 	    filters.push({namePrefix: filterNamePrefix});
 	  }
-	  log('Requesting Bluetooth Device...');
-	  navigator.bluetooth.requestDevice({filters: filters})
+	  //log('Requesting Bluetooth Device...');
+	  navigator.bluetooth.requestDevice({filters: filter})
 	  .then(device => {
 	    log('> Name:             ' + device.name);
 	    log('> Id:               ' + device.id);
@@ -32,7 +40,9 @@
 	  .catch(error => {
 	    log('Argh! ' + error);
 	  });
+*/
 	}
+
   </script>
   </head>
 	<form>
