@@ -4,7 +4,7 @@
 	function onButtonClick() {
 	//let filter = [];
 	  navigator.bluetooth.requestDevice({ 
-		filters: [{ services: ['battery_service'] }] })
+		filters: [{ services: ['heart_rate'] }] })
 		.then(
 		device => { 
 			console.log('Name: ' + device.name); }
