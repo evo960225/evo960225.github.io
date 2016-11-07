@@ -1,7 +1,10 @@
 body{
 	margin:0px;
 	padding:0px;
-	background-image: url("img/test.jpg")
+	background-image: url("img/test6.jpg");
+    background-position: center top;
+    background-size: 100% auto;
+    background-repeat: no-repeat;
 }
 
 
@@ -40,7 +43,7 @@ ul{
 
 }
 
-#authorize-div{
+#event_div{
 	font-size:25px;
 	background:white;
 	border-color:#0000FF;
@@ -54,9 +57,10 @@ ul{
 	margin:70px auto 0px auto;
 	bottom: 0px;             
 	box-sizing: border-box;
+	border-radius:20px;
 }
 
-#Insert_Delete{
+#insert_Delete{
 	padding:0px;
 	margin:auto;
 	bottom-top: -100px;
@@ -66,35 +70,27 @@ ul{
 
 
 #authorize-div {
-    /* 設定高度最小為100%, 如果內容區塊很多, 可以長大 */
     min-height: 100%;
-    /* 位置設為relative, 作為footer區塊位置的參考 */
     position: relative;
 }
 
-#Event_header {
-    /* 設定header的高度 */
+#event_header {
     height: 15px;
     box-sizing: border-box;
 }
 
 
-#Event_content {
-    /* 留出header及footer區塊的空間 */
-
+#event_content {
     padding-bottom: 50px;
     height: 400px;
 }
 
 
-#Event_footer{
-    /* 設定footer的高度 */
+#event_footer{
     height: 50px;
     box-sizing: border-box;
-    /* 設定footer絕對位置在底部 */
     position: relative;
     bottom: 50px;
-    /* 展開footer寬度 */
     width: 100%;
 }
 
@@ -107,6 +103,78 @@ hr {
     padding: 0; 
 }
 
+#editDiv{
+	width:500px;
+	height:300px;
+	padding:15px 0 0 15px;
+	
+}
 
 
+#editDiv .text{
+	border:1.5px solid #076600;
+	background:#fff;
+	width:150px;
+	height:25px;
+	line-height:25px;
+	text-indent:5px;
+	font-size:15px;
+	color:#000066;
+	border-radius:4px;
+}
+
+#editDiv label{
+	font-size:14px;
+	font-weight:bold;
+
+}
+#editDiv .date{
+	border:1px solid #076600;
+	background:#fff;
+	width:150px;
+	height:25px;
+	line-height:25px;
+	text-indent:5px;
+	font-size:15px;
+	color:#000066;
+	border-radius:4px;
+}
+
+#editDiv  p .star{
+	font-size:14px;
+	color:red;
+}
+
+
+.ui-dialog-content{
+	background-color:#fff;
+	width:600px;
+	height:300px;
+
+}
+
+.ui-widget-header{
+
+} 
+
+.ui-widget-content{
+	line-height:2;
+}
+
+
+#icon{
+	margin:-10px auto;
+	padding:0px;
+	width:8%;
+
+	line-height:3;
+	float:clear;
+	display:inline;
+}
+
+.navbar-brand{
+    background-size: 57% auto;
+    background-position: center; 
+
+}
 

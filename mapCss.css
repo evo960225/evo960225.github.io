@@ -1,8 +1,12 @@
 body{
 	margin:0px;
 	padding:0px;
-	background-image: url("img/test.jpg")
+	background-image: url("img/test6.jpg");
+    background-position: center top;
+    background-size: 100% auto;
+    background-repeat: no-repeat;
 }
+
 
 #map{
 	max-width:1200px;
