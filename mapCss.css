@@ -22,7 +22,9 @@ nav{
 
 }
 
-.nav navbar-nav navbar-right{
-	
-}
+.navbar-brand{
+    background: url(img/favicon.png) no-repeat;
+    background-size: 57% auto;
+    background-position: center; 
 
+}
