@@ -2,14 +2,19 @@
   <head>
   <script>
 	function onButtonClick() {
-	//let filter = [];
-	  navigator.bluetooth.requestDevice({filters: [{name: 'Arduino_R'}]})
-		.then(function(d){
-			alter('Name: ' + d.name); }
-		).catch(function(e){
+	navigator.bluetooth.requestDevice(
+		{ 
+		filters: [{
+		  //services: ['00002902-0000-1000-8000-00805f9b34fb']}],
+		  services: [0x1101]}],
+		  name: 'ArduinoR'
+		}).then(
+		device => { 
+			console.log('Name: ' + device.name); }
+		).catch(error => {
 		  console.log(error); 
 		});
-	}
+		
 
   </script>
   </head>
