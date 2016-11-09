@@ -94,16 +94,8 @@ ul{
     width: 100%;
 }
 
-hr {
-    display: block;
-    height: 3px;
-    border: 2;
-    border-top: 1px solid #ccc;
-    margin: 1em 0;
-    padding: 0; 
-}
 
-#editDiv{
+.buttonDiv{
 	width:500px;
 	height:300px;
 	padding:15px 0 0 15px;
@@ -111,7 +103,7 @@ hr {
 }
 
 
-#editDiv .text{
+.buttonDiv .text{
 	border:1.5px solid #076600;
 	background:#fff;
 	width:150px;
@@ -123,12 +115,12 @@ hr {
 	border-radius:4px;
 }
 
-#editDiv label{
+.buttonDiv label{
 	font-size:14px;
 	font-weight:bold;
 
 }
-#editDiv .date{
+.buttonDiv .date{
 	border:1px solid #076600;
 	background:#fff;
 	width:150px;
@@ -140,7 +132,7 @@ hr {
 	border-radius:4px;
 }
 
-#editDiv  p .star{
+.buttonDiv  p .star{
 	font-size:14px;
 	color:red;
 }
