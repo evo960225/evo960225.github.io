@@ -46,10 +46,10 @@
         intiRoad();
 
       	getCurrentPosition();
-
-      	var timer = setInterval(function(){
-      		getCurrentPosition();
-      		getPositionId(g_currentPos);
+		 
+        var timer = setInterval(function(){
+          getCurrentPosition();
+          getPositionId(g_currentPos);
           g_marker.setVisible(true);
           g_marker.setPosition(g_currentPos);
           if(!isFindCurPos && g_currentPos!=null){
