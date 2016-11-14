@@ -5,11 +5,10 @@
   <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <title>Event</title>
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
    <link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
   <script type="text/javascript" src="js/bootstrap.js"></script>
-
   <script type="text/javascript" src="js/eventJs.js"></script>
 
   <!--<script type="text/javascript" src="http://demonstration.abgne.tw/jquery/plugins/0082/js/jquery.bgiframe.js"></script>-->
@@ -45,21 +44,19 @@
       }
     }
 
-      function handleAuthResult(authResult) {
-          loadCalendarApi();
-        
-      }
-	  
+
+
 	  function checkAuth() {
+      //gapi.client.init({apiKey:'AIzaSyDMky4gQFhabfz4SoxuMkLAuIq2xpOy-WA'});
 	    //gapi.client.setApiKey(KEY);
         gapi.auth.authorize(
           {
             'client_id': CLIENT_ID,
             'scope': SCOPES.join(' '),
             'immediate': true
-          });
+          },loadCalendarApi);
       }
-    
+
        /**
        * Load Google Calendar client library. List upcoming events
        * once client library is loaded.
@@ -86,7 +83,7 @@
         request.execute(function(resp) {
           var events = resp.items;
           //appendPre('Upcoming events:');
-          if (events.length > 0) {
+          if (events!=null && events.length > 0) {
             for (i = 0; i < events.length; i++) {
               var event = events[i];
               var when = event.start.dateTime;
@@ -104,17 +101,17 @@
         });
       }
 
-       function appendPre(message) {
+      function appendPre(message) {
         var pre = document.getElementById('output');
         var textContent = document.createTextNode(message + '\n');
         pre.appendChild(textContent);
       }
-    
+
       function deleteEvent() {
-          alert('執行deletEvent()')
+        alert('執行deleteEvent()');
           var eventName = document.getElementById("deleteName").value;
-          var eventstartdate = document.getElementById("deleteStartDate").value;
           alert(eventName);
+          var eventstartdate = document.getElementById("deleteStartDate").value;
           alert(eventstartdate);
           var request = gapi.client.calendar.events.list({
                 'calendarId': 'primary',
@@ -122,26 +119,29 @@
                 'maxResults': 10
               });
           request.execute(function(resp) {
+            var id = -1;
             var it = resp.items;
             var i =0;
             for(i=0;i<it.length;i++){
-              if((it[i].summary == eventName) && it[i].start.date == eventstartdate){
-                var id = it[i].id;
+              if(it[i].summary == eventName && (eventstartdate=="" || it[i].start.date == eventstartdate)){
+                id = it[i].id;
               }
+
             }
-            var deleteR = gapi.client.calendar.events.delete({
-             'calendarId': 'primary',
-             'eventId': id
-             });
-             deleteR.execute();
+            if(id!=-1){
+              var deleteR = gapi.client.calendar.events.delete({
+                'calendarId': 'primary',
+                'eventId': id
+              });
+              deleteR.execute();
+              alert('finish');
+              myrefresh();
+              cancelEvent('#deletetDiv');
+            }
           });
-
-         cancelEvent('#deleteDiv');
-        alert('完工');
-        myrefresh();
-
       }
-      
+
+
       function search(){
         alert('執行search');
         var request = gapi.client.calendar.events.list({
@@ -152,11 +152,11 @@
               'maxResults': 10,
               'orderBy': 'startTime'
             });
-        
+
             request.execute(function(resp) {
               var events = resp.items;
               var itDate = document.getElementById("searchDate").value;
-          
+
                   if (events.length > 0) {
                     console.log("events.length>0");
                     for (i = 0; i < events.length; i++) {
@@ -171,7 +171,7 @@
                       appendPre("No event.");
                       }
                     }
-                  } 
+                  }
         });
       }
 
@@ -185,32 +185,29 @@
           'summary': eventName,
           'location':eventlocation,
           'start': {
-          'date': eventstartdate
+            'date': eventstartdate
           },
           'end': {
-          'date': eventenddate
+            'date': eventenddate
           }
         };
 
         var request = gapi.client.calendar.events.insert({
-          
           'calendarId': 'primary',
           'resource': event
         });
-        
+
         request.execute(function(event) {
-         console.log(event);
+          console.log(event);
+          myrefresh();
         });
 
         cancelEvent('#insertDiv');
-        alert('完工');
-        myrefresh();
-               
+
       }
 
       //重新導入畫面(刷新)
-      function myrefresh()
-      {
+      function myrefresh() {
         window.location.reload();
       }
 
@@ -232,11 +229,11 @@
                 'maxResults': 10,
                 'orderBy': 'startTime'
               });
-          
+
           request.execute(function(resp) {
                 var events = resp.items;
             var itDate = document.getElementById("searchDate").value;
-        
+
                 if (events.length > 0) {
                   for (i = 0; i < events.length; i++) {
                     var event = events[i];
@@ -254,53 +251,99 @@
               }
                   }
                 }
-            
+
           });
-          
+
         }
 
       function signOut() {
         alert('觸發signout()');
-        client_id ='123';
+        window.location.replace("https://accounts.google.com/logout");
+        //window.location.replace("login.html");
 
-        window.location.replace("login.html");
-       
       }
-  
 
+      function modify(){
+    		var eventName = document.getElementById("eventName").value;
+    		var eventstartdate = document.getElementById("eventStartDate").value;
+    		var eventenddate = document.getElementById("eventEndDate").value;
+    		var eventLocation = document.getElementById("eventLocation").value;
+        var event = {
+          'location':eventLocation,
+          'start': {
+          'date': eventstartdate
+          },
+          'end': {
+          'date': eventenddate
+          }
+        };
+    		var request = gapi.client.calendar.events.list({
+              'calendarId': 'primary',
+              'timeMin': (new Date()).toISOString(),
+              'singleEvents': true,
+              'maxResults': 10,
+              'orderBy': 'startTime'
+            });
+
+    		request.execute(function(resp) {
+              var events = resp.items;
+    		      var i = 0;
+              if (events.length > 0) {
+                for (i = 0; i < events.length; i++) {
+                  var event = events[i];
+    			  if(eventName == event.summary){
+    				var id = event.id;
+    				event.summary = eventName;
+    				event.start.date = eventstartdate;
+    				event.end.date = eventenddate;
+    				event.location = eventLocation;
+    				i = events.length + 1;
+          }
+                }
+              }
+    		  var updateevent = gapi.client.calendar.events.update({
+    				  'calendarId': 'primary',
+    				  'eventId': id,
+              'resource': event
+    				});
+    			updateevent.execute(function(event) {
+      		  alert();
+      		});
+    		});
+
+    	}
 
     </script>
 
-    <script src="https://apis.google.com/js/client.js?onload=checkAuth">
-    </script>
+    <script src="https://apis.google.com/js/client.js?onload=checkAuth"></script>
 
 
 
 </head>
 
-<body onload="handleAuthResult();">
+<body>
   <div id="insertDiv" class="buttonDiv" title="編輯事件" style="position: relative; z-index: 99;">
     <p>
          <label for="insertName">事件名稱：</label>
-         <input type="text" class="text" id="insertName" class="eventName"  title="請輸入事件名稱">
+         <input type="text" class="text" id="insertName" class="eventName required"  title="請輸入事件名稱" clientidmode="Static">
          <span class="star">*</span>
     </p>
 
     <p>
          <label for="insertStartDate">事件開始日期：</label>
-         <input type="date" class="date" id="insertStartDate" class="eventStartDate">
+         <input type="date" class="date" id="insertStartDate" class="eventStartDate" clientidmode="Static">
          <span class="star">*</span>
     </p>
 
      <p>
          <label for="insertEndDate">事件結束日期：</label>
-         <input type="date" class="date" id="insertEndDate" class="eventEndDate">
+         <input type="date" class="date" id="insertEndDate" class="eventEndDate" clientidmode="Static">
          <span class="star">*</span>
     </p>
 
     <p>
          <label for="insertLocation">事件地點：</label>
-         <input type="text" class="text" id="insertLocation" class="eventLocation">
+         <input type="text" class="text" id="insertLocation" class="eventLocation" clientidmode="Static">
          <span class="star">*</span>
     </p>
 
@@ -314,13 +357,13 @@
    <div id="deleteDiv" class="buttonDiv" title="編輯事件" style="position: relative; z-index: 99;">
       <p>
            <label for="deleteName">事件名稱：</label>
-           <input type="text" class="text" id="deleteName" title="請輸入事件名稱" class="eventName">
+           <input type="text" class="text" id="deleteName" title="請輸入事件名稱" class="eventName" clientidmode="Static">
            <span class="star">*</span>
       </p>
 
       <p>
            <label for="deleteStartDate">事件開始日期：</label>
-           <input type="date" class="date" id="deleteStartDate" class="eventStartDate">
+           <input type="date" class="date" id="deleteStartDate" class="eventStartDate" clientidmode="Static">
            <span class="star">*</span>
       </p>
 
@@ -359,31 +402,31 @@
 
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                  <li><a data-toggle="tab" href="#"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>&nbsp;聯絡我們</a></li>
-                  <li><a data-toggle="tab" href="#" onclick="signOut()"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>&nbsp;登出</a></li>
+                  <li><a href="https://www.facebook.com/groups/747200725393872/"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>&nbsp;聯絡我們</a></li>
+                  <li><a href="#" onclick="signOut()"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>&nbsp;登出</a></li>
 
              </ul>
 
 
           </div>
       </nav>
-  
-  
+
+
   <div id="event_div" class="container-fluid">
-  
+
             <div id="event_header">
                    Upcoming events:
             </div>
             <hr/>
-            <div id="event_content"> 
-                    
-            </div> 
+            <div id="event_content">
+
+            </div>
             <footer id="event_footer">
                 <hr>
                 <button type="button" class="btn btn-primary btn-lg" id="insert_button">新增事件</button>
                 <button type="button" class="btn btn-primary btn-lg" id="delete_button">刪除事件</button>
                 <button type="button" class="btn btn-primary btn-lg" id="edit_button">編輯事件</button>
-           </footer> 
+           </footer>
   </div>
 
 
@@ -393,8 +436,8 @@
         <button id="button" class="btn btn-info" onclick="search()" > search </button>
         <pre id="output"></pre>
       </div>
-  
-    
+
+
 
 
       <script src="https://www.google-analytics.com/urchin.js" type="text/javascript">
