@@ -116,9 +116,12 @@
           var request = gapi.client.calendar.events.list({
                 'calendarId': 'primary',
                 'timeMin': (new Date()).toISOString(),
-                'maxResults': 10
-              });
+                'showDeleted': false,
+                'singleEvents': true,
+          });
+
           request.execute(function(resp) {
+            alert('execute');
             var id = -1;
             var it = resp.items;
             var i =0;
@@ -265,6 +268,7 @@
 
       function modify(){
     		var eventName = document.getElementById("eventName").value;
+        alert('modifyName');
     		var eventstartdate = document.getElementById("eventStartDate").value;
     		var eventenddate = document.getElementById("eventEndDate").value;
     		var eventLocation = document.getElementById("eventLocation").value;
@@ -322,7 +326,7 @@
 </head>
 
 <body>
-  <div id="insertDiv" class="buttonDiv" title="編輯事件" style="position: relative; z-index: 99;">
+  <div id="insertDiv" class="buttonDiv" title="輸入事件" style="position: relative; z-index: 99;">
     <p>
          <label for="insertName">事件名稱：</label>
          <input type="text" class="text" id="insertName" class="eventName required"  title="請輸入事件名稱" clientidmode="Static">
@@ -348,13 +352,13 @@
     </p>
 
     <hr id="hr_line" color="#fff" size="3"/>
-       <button type="button" class="btn btn-info btn-lm" class="cancel_button" style="float: right; margin:0px 3px"onclick="cancelEvent('#insertDiv')">取消</button>
-      <button type="button" class="btn btn-info btn-lm" id="insert_button" style="float: right; margin:0px 3px" onclick="insertEvent()">提交</button>
+       <button type="button" class="btn btn-info btn-lm" class="cancel_Dbutton" style="float: right; margin:0px 3px"onclick="cancelEvent('#insertDiv')">取消</button>
+      <button type="button" class="btn btn-info btn-lm" id="insert_Dbutton" style="float: right; margin:0px 3px" onclick="insertEvent()">提交</button>
 
   </div>
 
 
-   <div id="deleteDiv" class="buttonDiv" title="編輯事件" style="position: relative; z-index: 99;">
+   <div id="deleteDiv" class="buttonDiv" title="刪除事件" style="position: relative; z-index: 99;">
       <p>
            <label for="deleteName">事件名稱：</label>
            <input type="text" class="text" id="deleteName" title="請輸入事件名稱" class="eventName" clientidmode="Static">
@@ -368,10 +372,42 @@
       </p>
 
       <hr id="hr_line" color="#fff" size="3"/>
-         <button type="button" class="btn btn-info btn-lm" class="cancel_button" style="float: right; margin:0px 3px"onclick="cancelEvent('#deleteDiv')">取消</button>
-        <button type="button" class="btn btn-info btn-lm" id="delete_button" style="float: right; margin:0px 3px" onclick="deleteEvent()">刪除</button>
+         <button type="button" class="btn btn-info btn-lm" class="cancel_Dbutton" style="float: right; margin:0px 3px"onclick="cancelEvent('#deleteDiv')">取消</button>
+        <button type="button" class="btn btn-info btn-lm" id="delete_Dbutton" style="float: right; margin:0px 3px" onclick="deleteEvent()">刪除</button>
 
     </div>
+
+  <div id="modifyDiv" class="buttonDiv" title="編輯事件" style="position: relative; z-index: 99;">
+    <p>
+         <label for="modifyName">事件名稱：</label>
+         <input type="text" class="text" id="modifyName" class="eventName required"  title="請輸入事件名稱" clientidmode="Static">
+         <span class="star">*</span>
+    </p>
+
+    <p>
+         <label for="modifyStartDate">事件開始日期：</label>
+         <input type="date" class="date" id="modifyStartDate" class="eventStartDate" clientidmode="Static">
+         <span class="star">*</span>
+    </p>
+
+     <p>
+         <label for="modifyEndDate">事件結束日期：</label>
+         <input type="date" class="date" id="modifyEndDate" class="eventEndDate" clientidmode="Static">
+         <span class="star">*</span>
+    </p>
+
+    <p>
+         <label for="modifyLocation">事件地點：</label>
+         <input type="text" class="text" id="modifyLocation" class="eventLocation" clientidmode="Static">
+         <span class="star">*</span>
+    </p>
+
+    <hr id="hr_line" color="#fff" size="3"/>
+       <button type="button" class="btn btn-info btn-lm" class="cancel_button" style="float: right; margin:0px 3px"onclick="cancelEvent('#insertDiv')">取消</button>
+      <button type="button" class="btn btn-info btn-lm" id="modify_Dbutton" style="float: right; margin:0px 3px" onclick="modifyEvent()">提交</button>
+
+  </div>
+
 
 
 
@@ -425,7 +461,7 @@
                 <hr>
                 <button type="button" class="btn btn-primary btn-lg" id="insert_button">新增事件</button>
                 <button type="button" class="btn btn-primary btn-lg" id="delete_button">刪除事件</button>
-                <button type="button" class="btn btn-primary btn-lg" id="edit_button">編輯事件</button>
+                <button type="button" class="btn btn-primary btn-lg" id="modify_button">編輯事件</button>
            </footer>
   </div>
 
