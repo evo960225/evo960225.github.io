@@ -1,0 +1,174 @@
+body{
+	margin:0px;
+	padding:0px;
+	background-image: url("img/test6.jpg");
+    background-position: center top;
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+}
+
+
+nav{
+	margin:0px;
+	padding:0px;
+
+}
+
+.nav navbar-nav navbar-right{
+	
+}
+
+
+ul{
+	list-style:outside none none;
+}
+
+#insert_table{
+	text-align: center;
+	margin:50px auto;
+	max-width:500px;
+	min-width:200px;
+}
+
+.info{
+	font-size:20px;
+	font-family:"微軟正黑體";
+}
+
+#search{
+	text-align: center;
+	margin:50px auto;
+	max-width:500px;
+	min-width:200px;
+
+}
+
+#event_div{
+	font-size:25px;
+	background:white;
+	border-color:#0000FF;
+	border:3px;
+	border-style:inset;
+	min-width:300px;
+	max-width:500px;
+	max-height:500px;
+	min-height:300px;
+	text-align: center;
+	margin:70px auto 0px auto;
+	bottom: 0px;             
+	box-sizing: border-box;
+	border-radius:20px;
+}
+
+#insert_Delete{
+	padding:0px;
+	margin:auto;
+	bottom-top: -100px;
+
+
+}
+
+
+#authorize-div {
+    min-height: 100%;
+    position: relative;
+}
+
+#event_header {
+    height: 15px;
+    box-sizing: border-box;
+}
+
+
+#event_content {
+    padding-bottom: 50px;
+    height: 400px;
+}
+
+
+#event_footer{
+    height: 50px;
+    box-sizing: border-box;
+    position: relative;
+    bottom: 50px;
+    width: 100%;
+}
+
+
+.buttonDiv{
+	width:500px;
+	height:300px;
+	padding:15px 0 0 15px;
+	
+}
+
+
+.buttonDiv .text{
+	border:1.5px solid #076600;
+	background:#fff;
+	width:150px;
+	height:25px;
+	line-height:25px;
+	text-indent:5px;
+	font-size:15px;
+	color:#000066;
+	border-radius:4px;
+}
+
+.buttonDiv label{
+	font-size:14px;
+	font-weight:bold;
+
+}
+.buttonDiv .date{
+	border:1px solid #076600;
+	background:#fff;
+	width:150px;
+	height:25px;
+	line-height:25px;
+	text-indent:5px;
+	font-size:15px;
+	color:#000066;
+	border-radius:4px;
+}
+
+.buttonDiv  p .star{
+	font-size:14px;
+	color:red;
+}
+
+
+.ui-dialog-content{
+	background-color:#fff;
+	width:600px;
+	height:300px;
+
+}
+
+.ui-widget-header{
+
+
+} 
+
+.ui-widget-content{
+	line-height:2;
+}
+
+
+#icon{
+	margin:-10px auto;
+	padding:0px;
+	width:8%;
+
+	line-height:3;
+	float:clear;
+	display:inline;
+}
+
+.navbar-brand{
+    background: url(img/favicon.png) no-repeat;
+    background-size: 57% auto;
+    background-position: center; 
+
+}
+
