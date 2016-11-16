@@ -18,7 +18,6 @@
   <!--<link rel="icon" href="img/favicon.png" type="image/ico" />-->
   <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
 
-  <script type="text/javascript" src="js/mix_main.js"></script>
   <script language="JavaScript" type="text/javascript">
 
     var CLIENT_ID = '1032454829565-mq9a352elo3m505k6eqmp79114brc1lp.apps.googleusercontent.com';
@@ -44,10 +43,14 @@
       document.images[0].style.height = "auto"
       }
     }
-
-
-
-	  function checkAuth() {
+    
+    var directionsService;
+    function initDestinationAuto(){
+	 directionsService = new google.maps.DirectionsService();  
+	 destination_autocomplete =  new google.maps.places.Autocomplete(document.getElementById('insertLocation'));
+    }
+    
+    function checkAuth() {
       //gapi.client.init({apiKey:'AIzaSyDMky4gQFhabfz4SoxuMkLAuIq2xpOy-WA'});
 	    //gapi.client.setApiKey(KEY);
         gapi.auth.authorize(
@@ -56,7 +59,8 @@
             'scope': SCOPES.join(' '),
             'immediate': true
           },loadCalendarApi);
-      }
+	initDestinationAuto();
+    }
 
        /**
        * Load Google Calendar client library. List upcoming events
