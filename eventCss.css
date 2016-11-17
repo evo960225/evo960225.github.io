@@ -14,26 +14,22 @@ nav{
 
 }
 
-.nav navbar-nav navbar-right{
-	
-}
-
 
 ul{
 	list-style:outside none none;
 }
 
-#insert_table{
+/*#insert_table{
 	text-align: center;
 	margin:50px auto;
-	max-width:500px;
+	max-width:550px;
 	min-width:200px;
-}
+}*/
 
-.info{
+/*.info{
 	font-size:20px;
 	font-family:"微軟正黑體";
-}
+}*/
 
 #search{
 	text-align: center;
@@ -43,22 +39,7 @@ ul{
 
 }
 
-#event_div{
-	font-size:25px;
-	background:white;
-	border-color:#0000FF;
-	border:3px;
-	border-style:inset;
-	min-width:300px;
-	max-width:500px;
-	max-height:500px;
-	min-height:300px;
-	text-align: center;
-	margin:70px auto 0px auto;
-	bottom: 0px;             
-	box-sizing: border-box;
-	border-radius:20px;
-}
+
 
 #insert_Delete{
 	padding:0px;
@@ -74,6 +55,23 @@ ul{
     position: relative;
 }
 
+#event_div{
+	font-size:25px;
+	background:white;
+	border-color:#0000FF;
+	border:3px;
+	border-style:inset;
+	min-width:300px;
+	max-width:500px;
+	max-height:550px;
+	min-height:350px;
+	text-align: center;
+	margin:70px auto 0px auto;
+	bottom: 0px;             
+	box-sizing: border-box;
+	border-radius:20px;
+}
+
 #event_header {
     height: 15px;
     box-sizing: border-box;
@@ -82,7 +80,7 @@ ul{
 
 #event_content {
     padding-bottom: 50px;
-    height: 400px;
+    height: 450px;
 }
 
 
@@ -152,6 +150,7 @@ ul{
 
 .ui-widget-content{
 	line-height:2;
+
 }
 
 
@@ -171,4 +170,7 @@ ul{
     background-position: center; 
 
 }
+
+
+
 
