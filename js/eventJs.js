@@ -34,12 +34,12 @@ $(function(){
 		maxHeight:400,
 		minHeight:330,
 		autoOpen:false,
-        modal: true,
-        resizable: true,
-        closeOnEscape: true,
-        show:true,
+		modal: true,
+		resizable: true,
+		closeOnEscape: true,
+		show:true,
 		hide:true,
-        title: "新增事件",
+       		title: "新增事件",
 		closeText: "X"
 	});
 
@@ -73,12 +73,12 @@ $(function(){
 		maxHeight:250,
 		minHeight:230,
 		autoOpen:false,
-        modal: true,
-        resizable: true,
-        closeOnEscape: true,
-        show:true,
+		modal: true,
+		resizable: true,
+		closeOnEscape: true,
+		show:true,
 		hide:true,
-        title: "刪除事件",
+		title: "刪除事件",
 		closeText: "X"
 	});
 
@@ -109,16 +109,19 @@ $(function(){
 		maxHeight:400,
 		minHeight:330,
 		autoOpen:false,
-        modal: true,
-        resizable: true,
-        closeOnEscape: true,
-        show:true,
+		modal: true,
+		resizable: true,
+		closeOnEscape: true,
+		show:true,
 		hide:true,
         //title: "修改事件", 
 		closeText: "X"
 	});
 
-
+	$('#search_button').click(function(){
+		$('#searchDiv').dialog('open');
+		
+	});
 
 	$('#searchDiv').dialog({
 		position: { 
@@ -139,23 +142,17 @@ $(function(){
 		maxHeight:200,
 		minHeight:180,
 		autoOpen:false,
-        modal: true,
-        resizable: true,
-        closeOnEscape: true,
-        show:true,
+		modal: true,
+		resizable: true,
+		closeOnEscape: true,
+		show:true,
 		hide:true,
-        title: "搜尋事件",
+       		title: "搜尋事件",
 		closeText: "X"
 	});
 
 
 
-
-	$('#search_button').click(function(){
-		
-		$('#searchDiv').dialog('open');
-		
-	});
 
 
 });
