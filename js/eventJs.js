@@ -29,8 +29,8 @@ $(function(){
 			alert('確定要關閉嗎?');
 		},*/
 
-		maxWidth:350,
-		minWidth:330,
+		maxWidth:400,
+		minWidth:350,
 		maxHeight:400,
 		minHeight:330,
 		autoOpen:false,
@@ -45,9 +45,11 @@ $(function(){
 
 
 
-	$('#event_div #event_footer #insert_button').click(function(){
+
+	$('#insert_button').click(function(){
 		$('#insertDiv').dialog('open');
 	});
+
 
 
 
@@ -66,8 +68,8 @@ $(function(){
 		},
 		
 
-		maxWidth:350,
-		minWidth:330,
+		maxWidth:400,
+		minWidth:350,
 		maxHeight:250,
 		minHeight:230,
 		autoOpen:false,
@@ -82,12 +84,78 @@ $(function(){
 
 
 
-	$('#event_div #event_footer #delete_button').click(function(){
+	$('#delete_button').click(function(){
 		$('#deleteDiv').dialog('open');
 	});
 
+
+	$('#modifyDiv').dialog({
+		position: { 
+			my: 'center',
+			at: 'center',
+			collision: 'fit',
+			// ensure that the titlebar is never outside the document
+			using: function(pos) {
+				var topOffset = $(this).css(pos).offset().top;
+				if (topOffset < 0) {
+					$(this).css('top', pos.top - topOffset);
+				}
+			}
+		},
+
+	
+		maxWidth:400,
+		minWidth:350,
+		maxHeight:400,
+		minHeight:330,
+		autoOpen:false,
+        modal: true,
+        resizable: true,
+        closeOnEscape: true,
+        show:true,
+		hide:true,
+        //title: "修改事件", 
+		closeText: "X"
+	});
+
+
+
+	$('#searchDiv').dialog({
+		position: { 
+			my: 'center',
+			at: 'center',
+			collision: 'fit',
+			// ensure that the titlebar is never outside the document
+			using: function(pos) {
+				var topOffset = $(this).css(pos).offset().top;
+				if (topOffset < 0) {
+					$(this).css('top', pos.top - topOffset);
+				}
+			}
+		},
+	
+		maxWidth:400,
+		minWidth:350,
+		maxHeight:200,
+		minHeight:180,
+		autoOpen:false,
+        modal: true,
+        resizable: true,
+        closeOnEscape: true,
+        show:true,
+		hide:true,
+        title: "搜尋事件",
+		closeText: "X"
+	});
+
+
+
+
+	$('#search_button').click(function(){
+		
+		$('#searchDiv').dialog('open');
+		
+	});
+
+
 });
-
-
-//document.write('<script src="event.html"></script>');
-
