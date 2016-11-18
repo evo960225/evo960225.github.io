@@ -170,7 +170,7 @@
       }else{
         var event = {
           'summary': eventName,
-          'location':eventLocation.value,
+          'location':eventLocation,
           'start': {
             'date': eventStartDate
           },
@@ -416,7 +416,7 @@
 
     </div>
 
-  <div id="modifyDiv" class="buttonDiv" title="事件列表" style="position: relative; z-index: 99;">
+  <div id="modifyDiv" class="buttonDiv" title="事件列表" style="position: relative; z-index: 99">
     <p>
          <label for="modifyName">事件名稱：</label>
          <input type="text" class="text" id="modifyName" class="eventName required"  title="請輸入事件名稱" clientidmode="Static">
