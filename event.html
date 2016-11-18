@@ -7,9 +7,10 @@
   <title>Event</title>
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-   <link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
-  <script type="text/javascript" src="js/bootstrap.js"></script>
   <script type="text/javascript" src="js/eventJs.js"></script>
+  <link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+  <script type="text/javascript" src="js/bootstrap.js"></script>
+
 
   <!--<script type="text/javascript" src="http://demonstration.abgne.tw/jquery/plugins/0082/js/jquery.bgiframe.js"></script>-->
   <script type="text/javascript" src="https://maps.google.com/maps/api/js?key=AIzaSyAqZmBR0L326jweeAj84JiwM54stfvbOIE&signed_in=true&libraries=places"></script>
@@ -99,11 +100,11 @@
             if (!when) {
               when = event.start.date;
             }
-            $('#event_div #event_content').append(event.summary + ' (' + when + ')' +'<br/>');
+            $('#event_content').append(event.summary + ' (' + when + ')' +'<br/>');
             //appendPre(event.summary + ' (' + when + ')')
           }
         } else {
-               $('event_content').append("No upcoming events found");
+               $('#event_content').append("No upcoming events found");
              //appendPre('No upcoming events found.');
         }
 
