@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
-  <meta name="viewport" content="width=device-width;">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <title></title>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
   <script src="https://maps.googleapis.com/maps/api/js?libraries=drawing,places"></script>
@@ -12,6 +12,7 @@
   <script type="text/javascript" src="js/direction.js"></script>
   <script type="text/javascript" src="js/road.js"></script>
   <script type="text/javascript" src="js/testmap.js"></script>
+
   <link rel="stylesheet" herf="text/css" href="testMapCss.css">
   <script>
   var posArr = [];
@@ -52,6 +53,28 @@
     isRouting=!isRouting;
   }
 
+
+  /* function resizeImage()
+    {
+      var window_height = document.body.clientHeight;
+
+      var window_width = document.body.clientWidth;
+      var image_width = document.images[0].width;
+      var image_height = document.images[0].height;
+      var height_ratio = image_height / window_height;
+      var width_ratio = image_width / window_width;
+      if (height_ratio > width_ratio)
+      {
+      document.images[0].style.width = "auto";
+      document.images[0].style.height = "100%";
+      }
+      else
+      {
+      document.images[0].style.width = "100%";
+      document.images[0].style.height = "auto";
+      }
+    }
+*/
   </script>
 </head>
 
@@ -61,8 +84,7 @@
   <input type="button" value="導航" onclick="rotue()" id="direction"/>
 	<table width="100%">
 		<tr>
-			<td style="vertical-align:top;"><div id="map"></div></td>
-			<td width="25%">
+			<td style="vertical-align:top;"><div id="map" ></div></td>
 			<p id="instructions"></p>
 			<p id="distance"></p>
 			<p id="txt_direction"></p>
@@ -76,9 +98,11 @@
 			</td>
 		</tr>
 	</table>
+    <div id="speedDiv" style="margin:0px 600px; width:500px"><font size="5">Speed:<input id="speed" type="number" min="1" max="500" step="1" value="20"/></font></div>
     <script src="https://www.google-analytics.com/urchin.js" type="text/javascript">
     </script>
-	<div id="speedDiv">Speed: <input id="speed" type="number" min="1" max="500" step="1" value="20"/></div>
-  </body>
 
+ </body>
+
+  <link href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
 </html>

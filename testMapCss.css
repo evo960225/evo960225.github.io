@@ -4,26 +4,21 @@ body{
 	background-image: url("img/phone.png");
     background-position: center top;
     background-repeat: no-repeat;
-    position:0px auto;
+    min-width:80%;
 }
 
 #map{
+	margin:2% 11% auto auto;
+	max-width:1050px; 
+	min-width:1000px;
+	max-height:700px;
+	min-height:520px;
+	background-size: 100% auto;
+}
+
 	margin:40px 0px 0px 165px;
 	width:1050px; 
 	height:530px;
-}
 
 
-#speedDiv{
-	margin:36px 0px 0px 600px ; 
-	position:center;
-	font-size:30px;
-	width:500px;
-	height:20px;
-
-}
-
-#speed{
-	font-size:25px;
-}
 
