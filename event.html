@@ -124,14 +124,14 @@
     }*/
 
     /*刪除事件*/
-    function deleteEvent(){
+    function deleteEvent(value){
       alert('執行deleteEvent()');
         var eventName = document.getElementById("deleteName").value;
         var eventStartDate = document.getElementById("deleteStartDate").value;
 
         if((eventName == "") || (eventStartDate == "")){
-          alert("Error!有未輸入的欄位");
-
+            alert("Error!有未輸入的欄位");
+           
         }else{
           var request = gapi.client.calendar.events.list({
                 'calendarId': 'primary',
@@ -141,27 +141,37 @@
           });
 
           request.execute(function(resp) {
-            var id = -1;
-            var it = resp.items;
-            var i =0;
-            for(i=0;i<it.length;i++){
-              if(it[i].summary == eventName && (eventStartDate=="" || it[i].start.date == eventStartDate)){
-                id = it[i].id;
-              }
+                var id = -1;
+                var it = resp.items;
+                var i =0;
+                for(i=0;i<it.length;i++){
+                  if(it[i].summary == eventName && (eventStartDate=="" || it[i].start.date == eventStartDate)){
+                    id = it[i].id;
+                  }else{
+                    alert('找不到符合的資料');
+                  }
 
-            }
-            if(id!=-1){
-              var deleteR = gapi.client.calendar.events.delete({
-                'calendarId': 'primary',
-                'eventId': id
+                }
+                if(id!=-1){
+                  ensureEvent();
+                  if(value == '1'){
+                    var deleteR = gapi.client.calendar.events.delete({
+                      'calendarId': 'primary',
+                      'eventId': id
+                    });
+                    deleteR.execute();
+                    alert("刪除成功");
+                    myrefresh();
+                    cancelEvent('#deletetDiv');
+                  }
+                }
               });
-              deleteR.execute();
-              alert("刪除成功");
-              myrefresh();
-              cancelEvent('#deletetDiv');
-            }
-          });
-        }
+          }
+
+    }
+
+    function ensureEvent(){
+        $('#ensureDiv').dialog('open');
     }
 
     function insertEvent(){
@@ -439,14 +449,14 @@
 
       <hr id="hr_line" color="#fff" size="3"/>
          <button type="button" class="btn btn-info btn-lm" class="cancel_Dbutton" style="float: right; margin:0px 3px"onclick="cancelEvent('#deleteDiv')">取消</button>
-        <button type="button" class="btn btn-info btn-lm" id="delete_Dbutton" style="float: right; margin:0px 3px">刪除</button>
+        <button type="button" class="btn btn-info btn-lm" id="delete_Dbutton" style="float: right; margin:0px 3px" onclick="deleteEvent('0')">刪除</button>
 
     </div>
 
     <div id="ensureDiv">
           <p>是否確定要刪除?</p>
           <button type="button" class="btn btn-info btn-lm" id="ensure_button" style="float: right; margin:0px 3px" onclick="cancelEvent('#ensureDiv')">取消</button>
-          <button type="button" class="btn btn-info btn-lm" class="cancel_button" style="float: right; margin:0px 3px"onclick="deleteEvent()">確定</button>
+          <button type="button" class="btn btn-info btn-lm" class="cancel_button" style="float: right; margin:0px 3px"onclick="deleteEvent('1')">確定</button>
 
     </div>
 
