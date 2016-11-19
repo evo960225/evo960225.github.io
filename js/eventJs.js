@@ -88,6 +88,39 @@ $(function(){
 		$('#deleteDiv').dialog('open');
 	});
 
+	$('#delete_Dbutton').click(function(){
+		$('#ensureDiv').dialog('open');
+	})
+
+	$('#ensureDiv').dialog({
+		position: { 
+			my: 'center',
+			at: 'center',
+			collision: 'fit',
+			// ensure that the titlebar is never outside the document
+			using: function(pos) {
+				var topOffset = $(this).css(pos).offset().top;
+				if (topOffset < 0) {
+					$(this).css('top', pos.top - topOffset);
+				}
+			}
+		},
+		
+		maxWidth:200,
+		minWidth:150,
+		maxHeight:180,
+		minHeight:150,
+		autoOpen:false,
+        modal: true,
+        resizable: true,
+        closeOnEscape: true,
+        show:true,
+		hide:true,
+        title: "網頁訊息",
+		closeText: "X"
+	});
+
+
 
 	$('#modifyDiv').dialog({
 		position: { 
@@ -136,8 +169,8 @@ $(function(){
 	
 		maxWidth:400,
 		minWidth:350,
-		maxHeight:200,
-		minHeight:180,
+		maxHeight:250,
+		minHeight:200,
 		autoOpen:false,
         modal: true,
         resizable: true,
