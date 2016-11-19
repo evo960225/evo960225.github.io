@@ -31,7 +31,7 @@
       document.images[0].style.width = "100%"
       document.images[0].style.height = "auto"
       }
-    }
+    }*/
 
 
     function signOut() {
@@ -40,6 +40,21 @@
       //window.location.replace("login.html");
      
     }
+
+    function showUserName(){
+         var request = gapi.client.calendar.events.list({
+              'calendarId': 'primary',
+              'singleEvents': true,
+              'maxResults': 10,
+              'orderBy': 'startTime'
+            });
+
+            request.execute(function(resp) {
+              var events = resp.items;
+              var userName = events[0].organizer.displayName;
+            $('#userName').html('&nbsp' + userName);
+             });
+     }
 
     </script>
 
@@ -71,8 +86,9 @@
 
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                  <li><a href="https://www.facebook.com/groups/747200725393872/"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>&nbsp;聯絡我們</a></li>
-                  <li><a href="#" onclick="signOut()"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>&nbsp;登出</a></li>
+                <li><a href="#"><span class="glyphicon glyphicon-user" aria-hidden="true"></span><d id="userName">&nbsp;Name</d></a></li>
+                <li><a href="https://www.facebook.com/groups/747200725393872/"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>&nbsp;聯絡我們</a></li>
+                <li><a href="#" onclick="signOut()"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>&nbsp;登出</a></li>
 
              </ul>
 

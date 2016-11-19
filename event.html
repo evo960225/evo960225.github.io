@@ -21,7 +21,6 @@
 
 
   <script language="JavaScript" type="text/javascript">
-
     var CLIENT_ID = '1032454829565-mq9a352elo3m505k6eqmp79114brc1lp.apps.googleusercontent.com';
     var KEY = '2OTAi0eufTVRWhCrKB2wivpy';
     var SCOPES = ["https://www.googleapis.com/auth/calendar"];
@@ -64,6 +63,7 @@
             'immediate': true
           },loadCalendarApi);
        initDestinationAuto();
+
     }
 
      /**
@@ -72,6 +72,7 @@
      */
     function loadCalendarApi() {
       gapi.client.load('calendar', 'v3', listUpcomingEvents);
+
     }
 
     /**
@@ -88,10 +89,12 @@
         'maxResults': 10,
         'orderBy': 'startTime'
       });
+      showUserName();
 
       request.execute(function(resp) {
-        $('#authorize-div #Event_content').html("");
+        $('#Event_content').html("");
         var events = resp.items;
+        //$('#userName').html('&nbsp' + events.id);
         //appendPre('Upcoming events:');
         if (events!=null && events.length > 0) {
           for (i = 0; i < events.length; i++) {
@@ -101,10 +104,13 @@
               when = event.start.date;
             }
             $('#event_content').append(event.summary + ' (' + when + ')' +'<br/>');
+            //$('#userName').html('&nbsp' + event.organizer.displayName);
             //appendPre(event.summary + ' (' + when + ')')
+            
           }
         } else {
                $('#event_content').append("No upcoming events found");
+               //$('#userName').html('&nbsp' + event.organizer.displayName);
              //appendPre('No upcoming events found.');
         }
 
@@ -196,14 +202,14 @@
     };
 
 
-    function locationCheck(){
-      var destination_autocomplete = new google.maps.places.Autocomplete(document.getElementById('insertLocation'));
+    function locationCheck(location){
+      var destination_autocomplete = new google.maps.places.Autocomplete(document.getElementById(location));
       google.maps.event.addListener(destination_autocomplete, 'place_changed', function() { 
         var place = destination_autocomplete.getPlace();
         if (!place.geometry) {
           return;
         }
-        //看要做啥
+
       });
         
     }
@@ -220,47 +226,51 @@
 
     /*查詢事件*/
     function searchEvent(){
-        var eventName = document.getElementsByClassName("eventName").value;
-        var eventStartDate = document.getElementsByClassName("eventStartDate").value;
-        var eventEndDate = document.getElementsByClassName("eventEndDate").value;
-        var eventLocation = document.getElementsByClassName("eventLocation").value;
-        var request = gapi.client.calendar.events.list({
-              'calendarId': 'primary',
-              'timeMin': (new Date()).toISOString(),
-              'showDeleted': false,
-              'singleEvents': true,
-              'maxResults': 10,
-              'orderBy': 'startTime'
-            });
+        var eventName = document.getElementById("searchName").value;
+        var eventStartDate = document.getElementById("searchStartDate").value;
+        if((eventName == "") || (eventStartDate == "")){
+          alert("Error!有未輸入的欄位");
 
-        request.execute(function(resp) {
-            var events = resp.items;
-            var itDate = document.getElementById("searchStartDate").value;
+        }else{
+            var request = gapi.client.calendar.events.list({
+                  'calendarId': 'primary',
+                  'timeMin': (new Date()).toISOString(),
+                  'showDeleted': false,
+                  'singleEvents': true,
+                  'maxResults': 10,
+                  'orderBy': 'startTime'
+                });
 
-            if (events.length > 0) {
-              for (i = 0; i < events.length; i++) {
-                var event = events[i];
-                var when = event.start.dateTime;
-                var when = event.start.date;
+            request.execute(function(resp) {
+                var events = resp.items;
+                var itDate = document.getElementById("searchStartDate").value;
+                var itName = document.getElementById("searchName").value;
+                if (events.length > 0) {
+                  for (i = 0; i < events.length; i++) {
+                    var event = events[i];
+                    //var when = event.start.dateTime;
+                    var when = event.start.date;
+                    var name = event.summary;
 
-                if(itDate == when){
-                  //appendPre(event.summary + " " + when);
-                  document.getElementById("modifyName").value = event.summary;
-                  document.getElementById("modifyStartDate").value=event.start.date;
-                  document.getElementById("modifyEndDate").value =event.end.date;
-                  document.getElementById("modifyLocation").value=event.location;
-                  i = events.length + 1;
+                    if(itDate == when && itName == name){
+                      //appendPre(event.summary + " " + when);
+                      document.getElementById("modifyName").value = event.summary;
+                      document.getElementById("modifyStartDate").value=event.start.date;
+                      document.getElementById("modifyEndDate").value =event.end.date;
+                      document.getElementById("modifyLocation").value=event.location;
+                      i = events.length + 1;
 
-                  $('#searchDiv').dialog('close');
-                  $('#modifyDiv').dialog('open');
+                      $('#searchDiv').dialog('close');
+                      $('#modifyDiv').dialog('open');
 
-                }else if (i == events.length-1){
-                  alert("Can't find the event");
+                    }else if (i == events.length-1){
+                      alert("Can't find the event");
+                    }
+                  }
                 }
-              }
-            }
 
-        });
+            });
+          }
 
       }
 
@@ -270,12 +280,14 @@
       var eventStartDate = document.getElementById("modifyStartDate").value;
       var eventEndDate = document.getElementById("modifyEndDate").value;
       var eventLocation = document.getElementById("modifyLocation").value;
-
+      var searchName= document.getElementById("searchName").value;
+      var searchStartDate= document.getElementById("searchStartDate").value;
       if((eventName == "") || (eventStartDate == "") || (eventEndDate == "") || (eventLocation == "")){
         alert("Error!有未輸入的欄位");
 
       }else{
         var event = {
+          'calendarId': 'primary',
           'location':eventLocation,
           'start': {
           'date': eventStartDate
@@ -297,7 +309,7 @@
               if (events.length > 0) {
                 for (i = 0; i < events.length; i++) {
                   var event = events[i];
-                  if(eventName == event.summary){
+                 if(searchName == event.summary && searchStartDate == event.start.date){
                     var id = event.id;
                     event.summary = eventName;
                     event.start.date = eventStartDate;
@@ -355,6 +367,20 @@
     　}
     }
 
+    function showUserName(){
+         var request = gapi.client.calendar.events.list({
+              'calendarId': 'primary',
+              'singleEvents': true,
+              'maxResults': 10,
+              'orderBy': 'startTime'
+            });
+
+            request.execute(function(resp) {
+              var events = resp.items;
+              var userName = events[0].organizer.displayName;
+            $('#userName').html('&nbsp' + userName);
+             });
+     }
 
 
     </script>
@@ -387,7 +413,7 @@
 
     <p>
          <label for="insertLocation">事件地點：</label>
-         <input type="text" class="text" id="insertLocation" class="eventLocation" clientidmode="Static" oninput="locationCheck()">
+         <input type="text" class="text" id="insertLocation" class="eventLocation" clientidmode="Static" oninput="locationCheck('#insertLocation')">
          <span class="star">*</span>
     </p>
 
@@ -413,9 +439,17 @@
 
       <hr id="hr_line" color="#fff" size="3"/>
          <button type="button" class="btn btn-info btn-lm" class="cancel_Dbutton" style="float: right; margin:0px 3px"onclick="cancelEvent('#deleteDiv')">取消</button>
-        <button type="button" class="btn btn-info btn-lm" id="delete_Dbutton" style="float: right; margin:0px 3px" onclick="deleteEvent()">刪除</button>
+        <button type="button" class="btn btn-info btn-lm" id="delete_Dbutton" style="float: right; margin:0px 3px">刪除</button>
 
     </div>
+
+    <div id="ensureDiv">
+          <p>是否確定要刪除?</p>
+          <button type="button" class="btn btn-info btn-lm" id="ensure_button" style="float: right; margin:0px 3px" onclick="cancelEvent('#ensureDiv')">取消</button>
+          <button type="button" class="btn btn-info btn-lm" class="cancel_button" style="float: right; margin:0px 3px"onclick="deleteEvent()">確定</button>
+
+    </div>
+
 
   <div id="modifyDiv" class="buttonDiv" title="事件列表" style="position: relative; z-index: 99">
     <p>
@@ -438,7 +472,7 @@
 
     <p>
          <label for="modifyLocation">事件地點：</label>
-         <input type="text" class="text" id="modifyLocation" class="eventLocation" clientidmode="Static" placeholder="Destination location">
+         <input type="text" class="text" id="modifyLocation" class="eventLocation" clientidmode="Static" oninput="locationCheck('modifyLocation')">
          <span class="star">*</span>
     </p>
 
@@ -463,6 +497,9 @@
   <div id="searchDiv" class="buttonDiv" title="搜尋事件" style="position: relative; z-index: 99; display:none">
   
     <p>
+         <label for="searchName">事件名稱：</label>
+         <input  type="text" class="text" id="searchName" class="eventStartDate" clientidmode="Static">
+         <span class="star">*</span>
          <label for="searchStartDate">事件開始日期：</label>
          <input type="date" class="date" id="searchStartDate" class="eventStartDate" clientidmode="Static">
          <span class="star">*</span>
@@ -475,6 +512,8 @@
       <button type="button" class="btn btn-info btn-lm" id="search_Sbutton" style="float: right; margin:0px 3px" onclick="searchEvent(),ChangeDisabled('2')">提交</button>
 
   </div>
+
+
 
 
 
@@ -498,6 +537,7 @@
 
         </ul>
         <ul class="nav navbar-nav navbar-right">
+              <li><a href="#"><span class="glyphicon glyphicon-user" aria-hidden="true"></span><d id="userName">&nbsp;Name</d></a></li>
               <li><a href="https://www.facebook.com/groups/747200725393872/"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>&nbsp;聯絡我們</a></li>
               <li><a href="#" onclick="signOut()"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>&nbsp;登出</a></li>
 
