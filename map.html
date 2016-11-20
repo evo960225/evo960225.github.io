@@ -33,6 +33,28 @@
       }
     }*/
 
+    var CLIENT_ID = '1032454829565-mq9a352elo3m505k6eqmp79114brc1lp.apps.googleusercontent.com';
+    var KEY = '2OTAi0eufTVRWhCrKB2wivpy';
+    var SCOPES = ["https://www.googleapis.com/auth/calendar"];
+
+    function checkAuth() {
+      //gapi.client.init({apiKey:'AIzaSyDMky4gQFhabfz4SoxuMkLAuIq2xpOy-WA'});
+      //gapi.client.setApiKey(KEY);
+       gapi.auth.authorize(
+         {
+           'client_id': CLIENT_ID,
+            'scope': SCOPES.join(' '),
+            'immediate': true
+          },loadCalendarApi);
+        showUserName();
+
+    }
+
+    function loadCalendarApi() {
+      gapi.client.load('calendar', 'v3', showUserName);
+
+    }
+
 
     function signOut() {
       alert('觸發signout()');
@@ -41,23 +63,22 @@
      
     }
 
-    function showUserName(){
-         var request = gapi.client.calendar.events.list({
-              'calendarId': 'primary',
-              'singleEvents': true,
-              'maxResults': 10,
-              'orderBy': 'startTime'
-            });
 
-            request.execute(function(resp) {
-              var events = resp.items;
-              var userName = events[0].organizer.displayName;
-            $('#userName').html('&nbsp' + userName);
-             });
-     }
+
+    function showUserName(){
+       var request = gapi.client.calendar.events.list({
+            'calendarId': 'primary',
+        });
+
+        request.execute(function(resp) {
+        var events = resp.items;
+        var userName = events[0].organizer.displayName;
+        $('#userName').html('&nbsp' + userName);
+         });
+   }
 
     </script>
-
+    <script src="https://apis.google.com/js/client.js?onload=checkAuth"></script>
 
 
 
