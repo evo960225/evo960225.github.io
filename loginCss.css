@@ -78,11 +78,10 @@ body{
 
 
 .container-fluid{
-
 	background:white;
 	width:50%;
 	margin:100px auto;
-	border-radius：10px;
+	border-radius:10px;
 	border:2px;
 	max-width:100%;
 	float:clear;
