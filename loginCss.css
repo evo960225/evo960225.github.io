@@ -176,13 +176,14 @@ div{
 	float:right;
 }
 
+
 .ui-dialog .ui-dialog-content {
     border: 0;
     padding: .5em 1em;
     background: #444444;
     text-align: center;
     color:white;
-    overflow: scroll;
+    overflow: auto;
     overflow-x:hidden;
     zoom: 1;
     font-family: Microsoft JhengHei;
