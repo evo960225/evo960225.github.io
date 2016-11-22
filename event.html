@@ -124,7 +124,7 @@
     }*/
 
     /*刪除事件*/
-    function deleteEvent(value){
+    function deleteEvent(){
       alert('執行deleteEvent()');
         var eventName = document.getElementById("deleteName").value;
         var eventStartDate = document.getElementById("deleteStartDate").value;
@@ -147,23 +147,26 @@
                 for(i=0;i<it.length;i++){
                   if(it[i].summary == eventName && (eventStartDate=="" || it[i].start.date == eventStartDate)){
                     id = it[i].id;
-                  }else{
-                    alert('找不到符合的資料');
+                    alert(id);
+                    break;
                   }
-
                 }
+
                 if(id!=-1){
                   ensureEvent();
-                  if(value == '1'){
+                  $("#confirm_Ebutton").click(function(){
                     var deleteR = gapi.client.calendar.events.delete({
-                      'calendarId': 'primary',
-                      'eventId': id
-                    });
+                        'calendarId': 'primary',
+                        'eventId': id
+                      });
                     deleteR.execute();
                     alert("刪除成功");
                     myrefresh();
-                    cancelEvent('#deletetDiv');
-                  }
+
+                  });
+
+                }else{
+                  alert("找不到符合的資料");
                 }
               });
           }
@@ -449,14 +452,14 @@
 
       <hr id="hr_line" color="#fff" size="3"/>
          <button type="button" class="btn btn-info btn-lm" class="cancel_Dbutton" style="float: right; margin:0px 3px"onclick="cancelEvent('#deleteDiv')">取消</button>
-        <button type="button" class="btn btn-info btn-lm" id="delete_Dbutton" style="float: right; margin:0px 3px" onclick="deleteEvent('0')">刪除</button>
+        <button type="button" class="btn btn-info btn-lm" id="delete_Dbutton" style="float: right; margin:0px 3px" onclick="deleteEvent()">刪除</button>
 
     </div>
 
     <div id="ensureDiv">
           <p>是否確定要刪除?</p>
-          <button type="button" class="btn btn-info btn-lm" id="ensure_button" style="float: right; margin:0px 3px" onclick="cancelEvent('#ensureDiv')">取消</button>
-          <button type="button" class="btn btn-info btn-lm" class="cancel_button" style="float: right; margin:0px 3px"onclick="deleteEvent('1')">確定</button>
+          <button type="button" class="btn btn-info btn-lm" id="delete_Ebutton" style="float: right; margin:0px 3px" onclick="cancelEvent('#ensureDiv')">取消</button>
+          <button type="button" class="btn btn-info btn-lm" class="cancel_button" id="confirm_Ebutton" style="float: right; margin:0px 3px">確定</button>
 
     </div>
 
