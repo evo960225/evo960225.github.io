@@ -5,10 +5,11 @@
 	    <meta name="author" content="Joy">
 	    <meta name="keywords" content="html5,css3">
 	    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+      <link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
       <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
       <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
       <script type="text/javascript" src="js/loginJs.js"></script>
-      <!--<script type="text/javascript" src="catalog/view/javascript/jquery/jquery-1.6.1.min.js"></script>-->
+      <script type="text/javascript" src="js/bootstrap.js"></script>
 	    <link rel="stylesheet" herf="text/css" href="loginCss.css">
 	    <link rel="shortcut icon" type="image/x-con" href="img/favicon.ico"/>
 
@@ -44,8 +45,6 @@
         if (authResult && !authResult.error) {
           window.location.replace("event.html");
           loadCalendarApi();
-          
-           
 
         } else {
 
@@ -84,6 +83,9 @@
     </div>
 
 		<div class="container-fluid" id="initiateDiv" style="display:none" style="border-radius:20px">
+      <div id="info">
+        <span class="glyphicon glyphicon-info-sign" aria-hidden="true""></span>
+      </div>
 			<div>
 				<img src="img/logo.png" class='img-responsive'>
 			</div>
@@ -97,15 +99,27 @@
 		</div>
 	
 
+    <div id="infoDiv" title="開發資訊" >
+        <div>
+          <span class="infoDivTitle">設計理念</span>
+          <hr/>
+          <span>當我們到一個陌生的地方時，經常需要地圖的引導。藉由現在便利的資訊科技，而有了許多電子化的地圖出現，不僅可以即時的顯示自己現在的所在地，更具備導航、顯示附近的餐廳、景點等。但卻往往導致使用者需一直低頭查看手機螢幕上的資訊、或配戴藍芽耳機，在導航的過程中常會受到環境因素上的干擾而導致行車的危險，故我們研發了此裝置來結合導航軟體(震動導航)，讓使用者兼顧安全且依照導航的指示快速抵達目的地。</span>
+          <br/>
+        </div>
+        <div>
+          <span class="infoDivTitle">開發團隊</span>
+          <hr/>
+          <span>程翊嘉、羅品璋、林竹婷、王郁蘋</span>
+        </div>
 
+    </div>
 		
 
 		<meta http-equiv="content-type" content="text/html charse=utf-8">
     	<link rel="stylesheet" href="css/bootstrap.min.css">
 
-	</body>
-	
-	
-	
+	 <link href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
+  </body>
+		
 </html>
 	

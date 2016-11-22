@@ -10,8 +10,6 @@
   <script type="text/javascript" src="js/eventJs.js"></script>
   <link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
   <script type="text/javascript" src="js/bootstrap.js"></script>
-
-
   <!--<script type="text/javascript" src="http://demonstration.abgne.tw/jquery/plugins/0082/js/jquery.bgiframe.js"></script>-->
   <script type="text/javascript" src="https://maps.google.com/maps/api/js?key=AIzaSyAqZmBR0L326jweeAj84JiwM54stfvbOIE&signed_in=true&libraries=places"></script>
 
@@ -381,18 +379,18 @@
     }
 
     function showUserName(){
-         var request = gapi.client.calendar.events.list({
-              'calendarId': 'primary',
-              'singleEvents': true,
-              'maxResults': 10,
-              'orderBy': 'startTime'
-            });
+        var request = gapi.client.calendar.events.list({
+          'calendarId': 'primary',
+          'singleEvents': true,
+          'maxResults': 10,
+          'orderBy': 'startTime'
+        });
 
-            request.execute(function(resp) {
-              var events = resp.items;
-              var userName = events[0].organizer.displayName;
-            $('#userName').html('&nbsp' + userName);
-             });
+        request.execute(function(resp) {
+          var events = resp.items;
+          var userName = events[0].organizer.displayName;
+        $('#userName').html('&nbsp' + userName);
+         });
      }
 
 

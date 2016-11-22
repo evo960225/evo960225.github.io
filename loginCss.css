@@ -1,24 +1,17 @@
 body{
 	margin:0;
     padding:0;
-	background: url(img/bg.jpg) center center fixed no-repeat;
     background-size: 100% 100%;
-    background-color:#ccc;
+	background: url(img/bg.jpg) center center fixed no-repeat;
     opacity:0.88;
     background-size: 100% 100%;
-
 
 }
 
 
 
-
-
-
 div{
 	text-align: center;
-
-
 }
 
 
@@ -29,10 +22,7 @@ div{
 	font-family:"微軟正黑體";
 	text-align: center;
 	min-width:30%
-
 	height:50px;
-
-
 }
 
 
@@ -44,6 +34,8 @@ div{
 	width:200px;
 	font-size:40px;
 	background-color: black;
+	margin:0px;
+	padding:0px;
 	background-size: 100% 100%;
 	float:clear;
 	color:white;
@@ -58,6 +50,7 @@ div{
 	background-size: 100% 100%;
 	width:50%;
 	margin:100px auto;
+	padding:0px;
 	border-radius:10px;
 	border:2px;
 	max-width:100%;
@@ -77,9 +70,6 @@ div{
 	display:block;
 	margin:auto;
 	position:right;
-
-
-
 }
 
 .loading{
@@ -97,6 +87,8 @@ div{
     opacity:0.9;
     float:clear;
 }
+
+
 
 /*#Test{
 	float:left;
@@ -126,18 +118,17 @@ div{
   -webkit-animation: load6 1.7s infinite ease;
   animation: load6 1.7s infinite ease;
 }
+
 @-webkit-keyframes load6 {
   0% {
     -webkit-transform: rotate(0deg);
     transform: rotate(0deg);
     box-shadow: 0 -0.83em 0 -0.4em, 0 -0.83em 0 -0.42em, 0 -0.83em 0 -0.44em, 0 -0.83em 0 -0.46em, 0 -0.83em 0 -0.477em;
   }
-  5%,
-  95% {
+  5%,95% {
     box-shadow: 0 -0.83em 0 -0.4em, 0 -0.83em 0 -0.42em, 0 -0.83em 0 -0.44em, 0 -0.83em 0 -0.46em, 0 -0.83em 0 -0.477em;
   }
-  10%,
-  59% {
+  10%,59% {
     box-shadow: 0 -0.83em 0 -0.4em, -0.087em -0.825em 0 -0.42em, -0.173em -0.812em 0 -0.44em, -0.256em -0.789em 0 -0.46em, -0.297em -0.775em 0 -0.477em;
   }
   20% {
@@ -179,5 +170,35 @@ div{
 }
 
 
+#info{
+	margin:0px;
+	padding:0px;
+	float:right;
+}
+
+.ui-dialog .ui-dialog-content {
+    border: 0;
+    padding: .5em 1em;
+    background: #444444;
+    text-align: center;
+    color:white;
+    overflow: scroll;
+    overflow-x:hidden;
+    zoom: 1;
+    font-family: Microsoft JhengHei;
+}
+
+span{
+	word-break:normal; 
+	width:auto; 
+	display:block; 
+	white-space:pre-wrap;
+	word-wrap : break-word ;
+	overflow: hidden;
+} 
+
+.infoDivTitle{
+	color:#BBFFEE;
+}
 
 

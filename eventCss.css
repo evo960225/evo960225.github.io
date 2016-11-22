@@ -176,6 +176,14 @@ ul{
 } 
 
 
+.ui-dialog .ui-dialog-content {
+    border: 0;
+    padding: .5em 1em;
+    background: #ff0000;
+    overflow: auto;
+    zoom: 1;
+}
+
 
 
 
