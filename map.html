@@ -7,7 +7,7 @@
   <link rel="stylesheet" herf="text/css" href="mapCss.css">
   <title>Maps</title>
   <script src="js/jquery-3.1.0.js"></script>
-  <script src="js/bootstrap.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
   <script src="js/bootstrap.js"></script>
   <script type="text/javascript" src="https://maps.google.com/maps/api/js?key=AIzaSyAqZmBR0L326jweeAj84JiwM54stfvbOIE&signed_in=true&libraries=places"></script>
   <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
@@ -51,7 +51,9 @@
     }
 
     function loadCalendarApi() {
-      gapi.client.load('calendar', 'v3', showUserName);
+      //gapi.client.load('calendar', 'v3', showUserName);
+      gapi.client.load('calendar', 'v3', listTodayEvents);
+
 
     }
 
@@ -71,11 +73,66 @@
         });
 
         request.execute(function(resp) {
-        var events = resp.items;
-        var userName = events[0].organizer.displayName;
-        $('#userName').html('&nbsp' + userName);
+          var events = resp.items;
+          var userName = events[0].organizer.displayName;
+          $('#userName').html('&nbsp' + userName);
          });
    }
+
+
+   function eventGuide(name,location){
+      $("#eventText").attr("value", name);
+      document.getElementById('end').value = location;
+      calcRoute();
+   }
+
+   function listTodayEvents(){
+     var request = gapi.client.calendar.events.list({
+        'calendarId': 'primary',
+        'timeMin': (new Date()).toISOString(),
+        'showDeleted': false,
+        'singleEvents': true,
+        'maxResults': 10,
+        'orderBy': 'startTime'
+      });
+
+      showUserName();
+
+      request.execute(function(resp) {
+              var events = resp.items;
+              var Today = new Date();
+              var y = Today.getFullYear();
+              var m = Today.getMonth()+1;
+              var d = Today.getDate();
+              var itDate = (y+'-'+m+'-'+ d); 
+              if (events.length > 0) {
+                for (i = 0; i < events.length; i++) {
+                  var event = events[i];
+                  //var when = event.start.dateTime;
+                  var when = event.start.date;
+                  var name = event.summary;
+
+                  if(itDate == when){
+                     $('#menu').append("<li><a href='#' title='" + name + "'onclick= eventGuide('"+ name + "','" + event.location + "')>" + event.summary + "</a></li>");
+                  }else if(i == events.length-1){
+                    $('#menu').html("<li>Can't find the event</li>");
+                  }
+
+                }
+              }
+
+          });
+
+   }
+
+
+   function buttonClick(){
+      var value = document.getElementById('end').value;
+      eventGuide('未選擇行程',value);
+   }
+
+
+
 
     </script>
     <script src="https://apis.google.com/js/client.js?onload=checkAuth"></script>
@@ -86,7 +143,7 @@
 
 <body onload="initialize()">
 	<input type="text" id="end"  placeholder="Destination location"/><br />
-    <input type="button" value="導航" onclick="calcRoute()" id="direction"/>
+    <input type="button" value="導航" onclick="buttonClick()" id="direction"/>
        <nav class="navbar navbar-inverse navbar-fixed-top" style="font-size:18px" >
         <div class="container-fluid">
           <div class="navbar-header">
@@ -138,7 +195,20 @@
 
 
 
-  
+  <div id="Event_DdM">
+    <div class="btn-group">
+      <button type="button" class="btn btn-info">請選擇今日行程</button>
+      <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+        <span class="caret"></span>
+        <span class="sr-only">Toggle Dropdown</span>
+      </button>
+      <ul id="menu" class="dropdown-menu" role="menu">
+        <!--填寫事件-->
+      </ul>
+    </div>
+
+    <input type="text" id="eventText" value="尚未選取今日行程" readonly/>
+  </div>
   <div id="map"></div>
 
   <script src="https://www.google-analytics.com/urchin.js" type="text/javascript">

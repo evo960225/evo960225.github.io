@@ -11,9 +11,9 @@ body{
 #map{
 	max-width:1200px;
 	min-width: 280px; 
-	height:600px;
-	min-height:450px;
-	margin:40px auto 0px auto;
+	height:550px;
+	min-height:550px;
+	margin:20px auto 0px auto;
 	
 }
 
@@ -28,4 +28,8 @@ nav{
     background-size: 57% auto;
     background-position: center; 
 
+}
+
+#Event_DdM{
+	margin:35px 0px 0px 0px;
 }
