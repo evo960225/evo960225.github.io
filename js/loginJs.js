@@ -22,7 +22,7 @@ $(function(){
 		
 
 		maxWidth:460,
-		minWidth:400,
+		minWidth:350,
 		maxHeight:400,
 		minHeight:300,
 		autoOpen:false,
