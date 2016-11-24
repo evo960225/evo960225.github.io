@@ -182,47 +182,44 @@
       var eventEndDate = document.getElementById("insertEndDate").value;
       var eventLocation = document.getElementById("insertLocation").value;
       
-      //var dateTime = new Date(Date.now()).toISOString();
-      //日期轉換(天數+1)
-      var dd = parseInt(eventEndDate.substr(8,2))+1;
-      var mm = parseInt(eventEndDate.substr(5,2));
-      var yy = parseInt(eventEndDate.substr(0,4));
-      var eventEndDate = (yy+'-'+mm+'-'+dd);
 
 
       if((eventName == "") || (eventStartDate == "")||(eventEndDate == "") || (eventLocation == "")){
         alert("Error!有未輸入的欄位");
-
       }else{
-		if(eventStartDate > eventEndDate){
-			 alert("Error!開始日期不得小於結束日期");
-		}else{
-			var event = {
-			  'summary': eventName,
-			  'location':eventLocation,
-			  'start': {
-				'date': eventStartDate,
-			   
-			  },
-			  'end': {
-				'date': eventEndDate,
-			  }
-			};
+        if(eventStartDate > eventEndDate){
+           alert("Error!開始日期不得小於結束日期");
+        }else{
+          //var dateTime = new Date(Date.now()).toISOString();
+          //日期轉換(天數+1)
+          var dd = parseInt(eventEndDate.substr(8,2))+1;
+          var mm = parseInt(eventEndDate.substr(5,2));
+          var yy = parseInt(eventEndDate.substr(0,4));
+          var eventEndDate = (yy+'-'+mm+'-'+dd);
 
-			var request = gapi.client.calendar.events.insert({
-			  'calendarId': 'primary',
-			  'resource': event,
-			});
-
-			request.execute(function(event) {
-			  alert("新增成功");
-			  console.log(event);
-			  myrefresh();
-			});
-
-			cancelEvent('#insertDiv');
-			}
-		}
+          var event = {
+            'summary': eventName,
+            'location':eventLocation,
+            'start': {
+            'date': eventStartDate,
+             
+            },
+            'end': {
+            'date': eventEndDate,
+            }
+          };
+          var request = gapi.client.calendar.events.insert({
+            'calendarId': 'primary',
+            'resource': event,
+          });
+          request.execute(function(event) {
+            alert("新增成功");
+            console.log(event);
+            myrefresh();
+          });
+          cancelEvent('#insertDiv');
+          }
+        }
     };
 
 
@@ -310,11 +307,7 @@
       var eventName = document.getElementById("modifyName").value;
       var eventStartDate = document.getElementById("modifyStartDate").value;
       var eventEndDate = document.getElementById("modifyEndDate").value;
-      //日期轉換(天數+1)
-      var dd = parseInt(eventEndDate.substr(8,2))+1;
-      var mm = parseInt(eventEndDate.substr(5,2));
-      var yy = parseInt(eventEndDate.substr(0,4));
-      var eventEndDate = (yy+'-'+mm+'-'+dd);
+
       
       var eventLocation = document.getElementById("modifyLocation").value;
       var searchName= document.getElementById("searchName").value;
@@ -322,7 +315,16 @@
       if((eventName == "") || (eventStartDate == "") || (eventEndDate == "") || (eventLocation == "")){
         alert("Error!有未輸入的欄位");
 
-      }else{
+      }if(eventStartDate > eventEndDate){
+           alert("Error!開始日期不得小於結束日期");
+       }else{
+        //日期轉換(天數+1)
+        var dd = parseInt(eventEndDate.substr(8,2))+1;
+        var mm = parseInt(eventEndDate.substr(5,2));
+        var yy = parseInt(eventEndDate.substr(0,4));
+        var eventEndDate = (yy+'-'+mm+'-'+dd);
+
+       
         var event = {
           'calendarId': 'primary',
           'location':eventLocation,
