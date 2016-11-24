@@ -88,9 +88,6 @@ $(function(){
 		$('#deleteDiv').dialog('open');
 	});
 
-	$('#delete_Dbutton').click(function(){
-		$('#ensureDiv').dialog('open');
-	})
 
 	$('#ensureDiv').dialog({
 		position: { 
@@ -189,6 +186,7 @@ $(function(){
 		$('#searchDiv').dialog('open');
 		
 	});
+
 
 
 });
