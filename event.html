@@ -108,7 +108,7 @@
             
           }
         } else {
-               $('#event_content').append("No upcoming events found");
+               $('#event_content').append("未找到近期事件");
                //$('#userName').html('&nbsp' + event.organizer.displayName);
              //appendPre('No upcoming events found.');
         }
@@ -124,12 +124,12 @@
 
     /*刪除事件*/
     function deleteEvent(){
-      alert('執行deleteEvent()');
+      //alert('執行deleteEvent()');
         var eventName = document.getElementById("deleteName").value;
         var eventStartDate = document.getElementById("deleteStartDate").value;
 
         if((eventName == "") || (eventStartDate == "")){
-            alert("Error!有未輸入的欄位");
+            alert("錯誤!有未輸入的欄位");
            
         }else{
           var request = gapi.client.calendar.events.list({
@@ -176,7 +176,7 @@
     }
 
     function insertEvent(){
-      alert('執行insert function');
+      //alert('執行insert function');
       var eventName = document.getElementById("insertName").value;
       var eventStartDate = document.getElementById("insertStartDate").value;
       var eventEndDate = document.getElementById("insertEndDate").value;
@@ -185,10 +185,10 @@
 
 
       if((eventName == "") || (eventStartDate == "")||(eventEndDate == "") || (eventLocation == "")){
-        alert("Error!有未輸入的欄位");
+        alert("錯誤!有未輸入的欄位");
       }else{
         if(eventStartDate > eventEndDate){
-           alert("Error!開始日期不得小於結束日期");
+           alert("錯誤!開始日期不得小於結束日期");
         }else{
           //var dateTime = new Date(Date.now()).toISOString();
           //日期轉換(天數+1)
@@ -250,7 +250,7 @@
         var eventName = document.getElementById("searchName").value;
         var eventStartDate = document.getElementById("searchStartDate").value;
         if((eventName == "") || (eventStartDate == "")){
-          alert("Error!有未輸入的欄位");
+          alert("錯誤!有未輸入的欄位");
 
         }else{
             var request = gapi.client.calendar.events.list({
@@ -292,7 +292,7 @@
                       $('#modifyDiv').dialog('open');
 
                     }else if (i == events.length-1){
-                      alert("Can't find the event");
+                      alert("找不到事件");
                     }
                   }
                 }
@@ -313,10 +313,10 @@
       var searchName= document.getElementById("searchName").value;
       var searchStartDate= document.getElementById("searchStartDate").value;
       if((eventName == "") || (eventStartDate == "") || (eventEndDate == "") || (eventLocation == "")){
-        alert("Error!有未輸入的欄位");
+        alert("錯誤!有未輸入的欄位");
 
       }if(eventStartDate > eventEndDate){
-           alert("Error!開始日期不得小於結束日期");
+           alert("錯誤!開始日期不得小於結束日期");
        }else{
         //日期轉換(天數+1)
         var dd = parseInt(eventEndDate.substr(8,2))+1;
@@ -324,7 +324,7 @@
         var yy = parseInt(eventEndDate.substr(0,4));
         var eventEndDate = (yy+'-'+mm+'-'+dd);
 
-       
+
         var event = {
           'calendarId': 'primary',
           'location':eventLocation,
@@ -378,7 +378,7 @@
 
     /*登出帳號*/
     function signOut() {
-      alert('觸發signout()');
+      //alert('觸發signout()');
       window.location.replace("https://accounts.google.com/logout");
       //window.location.replace("login.html");
 
@@ -590,7 +590,7 @@
   <div id="event_div" class="container-fluid">
 
             <div id="event_header">
-                   Upcoming events:
+                   近期活動:
             </div>
             <hr/>
             <div id="event_content">
