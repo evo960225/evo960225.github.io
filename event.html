@@ -7,13 +7,14 @@
   <title>Event</title>
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script src="js/bootstrap-datetimepicker.min.js"></script>
   <script type="text/javascript" src="js/eventJs.js"></script>
   <link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
   <script type="text/javascript" src="js/bootstrap.js"></script>
   <!--<script type="text/javascript" src="http://demonstration.abgne.tw/jquery/plugins/0082/js/jquery.bgiframe.js"></script>-->
   <script type="text/javascript" src="https://maps.google.com/maps/api/js?key=AIzaSyAqZmBR0L326jweeAj84JiwM54stfvbOIE&signed_in=true&libraries=places"></script>
-
   <link rel="stylesheet" herf="text/css" href="eventCss.css">
+  <link rel="stylesheet" herf="text/css" href="css/bootstrap-datetimepicker.min.css">
   <!--<link rel="icon" href="img/favicon.png" type="image/ico" />-->
   <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
 
@@ -143,7 +144,7 @@
                 var it = resp.items;
                 var i =0;
                 for(i=0;i<it.length;i++){
-                  if(it[i].summary == eventName && (eventStartDate=="" || it[i].start.date == eventStartDate)){
+                  if((it[i].summary == eventName) && (it[i].start.date == eventStartDate)){
                     id = it[i].id;
                     break;
                   }
@@ -180,8 +181,16 @@
       var eventStartDate = document.getElementById("insertStartDate").value;
       var eventEndDate = document.getElementById("insertEndDate").value;
       var eventLocation = document.getElementById("insertLocation").value;
+      
+      //var dateTime = new Date(Date.now()).toISOString();
+      //日期轉換(天數+1)
+      var dd = parseInt(eventEndDate.substr(8,2))+1;
+      var mm = parseInt(eventEndDate.substr(5,2));
+      var yy = parseInt(eventEndDate.substr(0,4));
+      var eventEndDate = (yy+'-'+mm+'-'+dd);
 
-      if((eventName == "") || (eventStartDate == "") || (eventEndDate == "") || (eventLocation == "")){
+
+      if((eventName == "") || (eventStartDate == "")||(eventEndDate == "") || (eventLocation == "")){
         alert("Error!有未輸入的欄位");
 
       }else{
@@ -189,16 +198,17 @@
           'summary': eventName,
           'location':eventLocation,
           'start': {
-            'date': eventStartDate
+            'date': eventStartDate,
+           
           },
           'end': {
-            'date': eventEndDate
+            'date': eventEndDate,
           }
         };
 
         var request = gapi.client.calendar.events.insert({
           'calendarId': 'primary',
-          'resource': event
+          'resource': event,
         });
 
         request.execute(function(event) {
@@ -265,8 +275,15 @@
                     if(itDate == when && itName == name){
                       //appendPre(event.summary + " " + when);
                       document.getElementById("modifyName").value = event.summary;
-                      document.getElementById("modifyStartDate").value=event.start.date;
-                      document.getElementById("modifyEndDate").value =event.end.date;
+                      document.getElementById("modifyStartDate").value= event.start.date;
+
+                       //日期轉換(天數-1)
+                      var dd = parseInt(event.end.date.substr(8,2))-1;
+                      var mm = parseInt(event.end.date.substr(5,2));
+                      var yy = parseInt(event.end.date.substr(0,4));
+                      var eventEndDate = (yy+'-'+mm+'-'+dd);
+     
+                      document.getElementById("modifyEndDate").value = eventEndDate;
                       document.getElementById("modifyLocation").value=event.location;
                       i = events.length + 1;
 
@@ -289,6 +306,12 @@
       var eventName = document.getElementById("modifyName").value;
       var eventStartDate = document.getElementById("modifyStartDate").value;
       var eventEndDate = document.getElementById("modifyEndDate").value;
+      //日期轉換(天數+1)
+      var dd = parseInt(eventEndDate.substr(8,2))+1;
+      var mm = parseInt(eventEndDate.substr(5,2));
+      var yy = parseInt(eventEndDate.substr(0,4));
+      var eventEndDate = (yy+'-'+mm+'-'+dd);
+      
       var eventLocation = document.getElementById("modifyLocation").value;
       var searchName= document.getElementById("searchName").value;
       var searchStartDate= document.getElementById("searchStartDate").value;
@@ -388,7 +411,7 @@
         request.execute(function(resp) {
           var events = resp.items;
           var userName = events[0].organizer.displayName;
-        $('#userName').html('&nbsp' + userName);
+          $('#userName').html('&nbsp' + userName);
          });
      }
 
@@ -416,7 +439,7 @@
     </p>
 
      <p>
-         <label for="insertEndDate">事件結束日期：</label>
+         <label for="insertEndDate" >事件結束日期：</label>
          <input type="date" class="date" id="insertEndDate" class="eventEndDate" clientidmode="Static">
          <span class="star">*</span>
     </p>
