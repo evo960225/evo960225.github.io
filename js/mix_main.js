@@ -5,6 +5,10 @@ var directionsDisplay;
 var directionsService = new google.maps.DirectionsService();
 var infoWindow;
 
+function getLocIdToJava(){
+	return window.control.getLocId(loc_id);
+}
+
 function initDisplay(){
 	
 	directionsDisplay = new google.maps.DirectionsRenderer();
