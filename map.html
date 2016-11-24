@@ -98,13 +98,15 @@
 
       showUserName();
 
-      request.execute(function(resp) {
+       request.execute(function(resp) {
               var events = resp.items;
+              var post = 0 //符合事件數量
               var Today = new Date();
               var y = Today.getFullYear();
               var m = Today.getMonth()+1;
               var d = Today.getDate();
-              var itDate = (y+'-'+m+'-'+ d); 
+              var itDate = (y+'-'+m+'-'+ d);
+
               if (events.length > 0) {
                 for (i = 0; i < events.length; i++) {
                   var event = events[i];
@@ -114,13 +116,16 @@
 
                   if(itDate == when){
                      $('#menu').append("<li><a href='#' title='" + name + "'onclick= eventGuide('"+ name + "','" + event.location + "')>" + event.summary + "</a></li>");
-                  }else if(i == events.length-1){
-                    $('#menu').html("<li>Can't find the event</li>");
+                     post++;
+                  }
+                  if(post == 0){
+                     $('#menu').html("<li>Can't find the event</li>"); 
                   }
 
                 }
+                
               }
-
+              
           });
 
    }
