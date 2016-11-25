@@ -60,3 +60,28 @@ function calcRoute() {
 	});
 
 }
+
+var cur_distance = -1;
+function getRoute(){
+  var data = g_rotueResponse.routes[0].legs[0].steps;
+
+  var i=1;
+  var distance = data[0].distance.value;
+  while(i<data.length && data[i].maneuver==""){
+    distance += data[++i].distance.value;
+  }
+
+  if(i==0)return -1;
+  if(distance<=500){
+    var msec=1000;
+    if(distance<=50){msec=100;}
+    else if(distance<=100){msec=300;}
+    else if(distance<=200){msec=500;}
+    else if(distance<=300){msec=1000;}
+    else if(distance<=400){msec=2000;}
+    return msec;
+  }else if(distance>500){
+    return -1;
+  }
+  cur_distance=distance;
+}
