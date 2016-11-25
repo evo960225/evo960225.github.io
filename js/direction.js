@@ -88,7 +88,7 @@ function getRoute(){
   return g_distance;
 }
 
-function getDirectionToJava(g_direct,g_d_msec){
+function getDirectionToJava(){
 	return window.control.getDirection(g_direct,g_d_msec);
 }
 
