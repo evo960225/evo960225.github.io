@@ -36,7 +36,6 @@ ul{
 	margin:50px auto;
 	max-width:500px;
 	min-width:200px;
-
 }
 
 
@@ -45,8 +44,6 @@ ul{
 	padding:0px;
 	margin:auto;
 	bottom-top: -100px;
-
-
 }
 
 
@@ -61,8 +58,8 @@ ul{
 	border-color:#0000FF;
 	border:3px;
 	border-style:inset;
-	min-width:300px;
 	max-width:500px;
+	min-width:300px;
 	max-height:550px;
 	min-height:350px;
 	text-align: center;
@@ -73,12 +70,14 @@ ul{
 }
 
 #event_header {
+	font-family:Microsoft JhengHei;
     height: 15px;
     box-sizing: border-box;
 }
 
 
 #event_content {
+	font-family:"DFKai-sb";
     padding-bottom: 50px;
     height: 450px;
 }
@@ -86,6 +85,7 @@ ul{
 
 #event_footer{
     height: 50px;
+    font-family:Microsoft JhengHei;
     box-sizing: border-box;
     position: relative;
     bottom: 50px;
