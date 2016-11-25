@@ -200,7 +200,13 @@ span{
 }
 
 #infoDiv{
-  max-width:400px;
-  min-width:350px;
+  font-size:18px;
+
+}
+
+.infoDivInt{
+  font-size:18px;
+  font-family:DFKai-sb;
+
 }
 
