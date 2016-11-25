@@ -20,9 +20,9 @@ $(function(){
 			}
 		},
 		
-
-		maxWidth:460,
-		minWidth:350,
+		
+		width:400,
+		minwidth:350,
 		maxHeight:400,
 		minHeight:300,
 		autoOpen:false,
