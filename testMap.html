@@ -79,19 +79,22 @@
 </head>
 
 <body onload="initialize()">
-  <input type ="button" onclick="history.back()"  value="回到上一頁"></input>
+  <input type ="button" onclick="history.back()"  value="回到上一頁"/>
 	<input type="text" id="end"  placeholder="Destination location"/><br />
   <input type="button" value="導航" onclick="rotue()" id="direction"/>
 	<table width="100%">
 		<tr>
 			<td style="vertical-align:top;"><div id="map" ></div></td>
-			<p id="instructions"></p>
-			<p id="distance"></p>
-			<p id="txt_direction"></p>
+			
 			<table width="100%">
 			<tr>
 			<td height="50px"><h1 id ="left" ></h1></td>
 			<td height="50px"><h1 id ="right"></h1></td>
+			</tr>
+			<tr>
+				<td><p id="instructions"></p></td>
+				<td><p id="distance"></p></td>
+				<td><p id="txt_direction"></p></td>	
 			</tr>
 			</table>
 			
