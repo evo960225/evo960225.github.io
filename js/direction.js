@@ -61,27 +61,28 @@ function calcRoute() {
 
 }
 
-var cur_distance = -1;
+var g_distance = 0;
+var g_direct;
+var g_d_msec = -1;
 function getRoute(){
   var data = g_rotueResponse.routes[0].legs[0].steps;
 
   var i=1;
-  var distance = data[0].distance.value;
+  g_distance = data[0].distance.value;
   while(i<data.length && data[i].maneuver==""){
-    distance += data[++i].distance.value;
+    g_distance += data[++i].distance.value;
   }
 
   if(i==0)return -1;
-  if(distance<=500){
+  
+  if(g_distance<=500){
     var msec=1000;
-    if(distance<=50){msec=100;}
-    else if(distance<=100){msec=300;}
-    else if(distance<=200){msec=500;}
-    else if(distance<=300){msec=1000;}
-    else if(distance<=400){msec=2000;}
-    return msec;
-  }else if(distance>500){
-    return -1;
+    if(g_distance<=50){g_d_msec=100;}
+    else if(g_distance<=100){g_d_msec=300;}
+    else if(g_distance<=200){g_d_msec=500;}
+    else if(g_distance<=300){g_d_msec=1000;}
+    else if(g_distance<=400){g_d_msec=2000;}
+    g_direct = data[i].maneuver;
   }
-  cur_distance=distance;
+  return g_distance;
 }
