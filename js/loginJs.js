@@ -21,7 +21,7 @@ $(function(){
 		},
 		
 		
-		width:400,
+		width:380,
 		minwidth:350,
 		maxHeight:400,
 		minHeight:300,
