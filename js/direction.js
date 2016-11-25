@@ -56,6 +56,7 @@ function calcRoute() {
 	  if (status == google.maps.DirectionsStatus.OK) {
 			g_rotueResponse = response;
 		  directionsDisplay.setDirections(response);
+		  g_map.setZoom(15);
 		}
 	});
 
