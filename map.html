@@ -80,11 +80,20 @@
    }
 
 
-   function eventGuide(name,location){
+    function eventGuide(name,location){
       $("#eventText").attr("value", name);
       document.getElementById('end').value = location;
       calcRoute();
-   }
+    }
+
+    function removeAllSpace(str) {
+      return str.replace(/\s+/g, "_");
+    }
+
+
+    function displayText(name){
+       $("#eventText").attr("value", name);
+    }
 
    function listTodayEvents(){
      var request = gapi.client.calendar.events.list({
@@ -112,9 +121,10 @@
                   //var when = event.start.dateTime;
                   var when = event.start.date;
                   var name = event.summary;
+                  var trimname = removeAllSpace(name);
 
-                  if(itDate == when){
-                     $('#menu').append("<li><a href='#' title='" + name + "'onclick= eventGuide('"+ name + "','" + event.location + "')>" + event.summary + "</a></li>");
+                 if(itDate == when){
+                     $('#menu').append("<li><a href='#' title='" + name + "'onclick= eventGuide('"+ trimname + "','" + event.location + "')>" + event.summary + "</a></li>");
                      post++;
                   }
 
