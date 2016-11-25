@@ -23,9 +23,7 @@
           initMap();
           initDirection();
           intiRoad();
-  
-        	getCurrentPosition();
-  		 
+          getCurrentPosition();	 
           var timer = setInterval(function(){
             getCurrentPosition();
             getPositionId(g_currentPos);
@@ -36,8 +34,7 @@
               isFindCurPos=true;
             }
             var latlng = {lat:g_currentPos.lat, lng:g_currentPos.lng};
-            posArr.push(latlng);
-        	}, 500);
+            posArr.push(latlng);}, 500);
           var timer = setInterval(function(){
             //runSnapToRoad(posArr);
             posArr = [];
@@ -45,16 +42,15 @@
               calcRoute();
               g_map.setCenter(g_currentPos);
               showDirection();
-            }
-          }, 1000);
-        	setTimeout(function() {g_map.setCenter(g_currentPos);}, 200);
-        }
+            }}, 1000);
+           setTimeout(function() {g_map.setCenter(g_currentPos);}, 200);
+          }
   
         var isRouting = false;
         function rotue(){
           isRouting=!isRouting;
         }
-
+    }
     var CLIENT_ID = '1032454829565-mq9a352elo3m505k6eqmp79114brc1lp.apps.googleusercontent.com';
     var KEY = '2OTAi0eufTVRWhCrKB2wivpy';
     var SCOPES = ["https://www.googleapis.com/auth/calendar"];
