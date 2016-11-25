@@ -6,32 +6,54 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <link rel="stylesheet" herf="text/css" href="mapCss.css">
   <title>Map</title>
-  <script src="js/jquery-3.1.0.js"></script>
   <link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?libraries=drawing,places"></script>
   <script src="js/bootstrap.js"></script>
   <script type="text/javascript" src="https://maps.google.com/maps/api/js?key=AIzaSyAqZmBR0L326jweeAj84JiwM54stfvbOIE&signed_in=true&libraries=places"></script>
+  <script type="text/javascript" src="js/map.js"></script>
+  <script type="text/javascript" src="js/position.js"></script>
+  <script type="text/javascript" src="js/direction.js"></script>
+  <script type="text/javascript" src="js/road.js"></script>
   <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
-  <script type="text/javascript" src="js/mix_main.js"></script>
-   <script language="JavaScript" type="text/javascript">
-    /*function resizeImage()
-    {
-      var window_height = document.body.clientHeight
-      var window_width = document.body.clientWidth
-      var image_width = document.images[0].width
-      var image_height = document.images[0].height
-      var height_ratio = image_height / window_height
-      var width_ratio = image_width / window_width
-      if (height_ratio > width_ratio)
-      {
-      document.images[0].style.width = "auto"
-      document.images[0].style.height = "100%"
-      }
-      else
-      {
-      document.images[0].style.width = "100%"
-      document.images[0].style.height = "auto"
-      }
-    }*/
+  <script language="JavaScript" type="text/javascript">
+        var posArr = [];
+        var isFindCurPos =false;
+        function initialize() {
+          initMap();
+          initDirection();
+          intiRoad();
+  
+        	getCurrentPosition();
+  		 
+          var timer = setInterval(function(){
+            getCurrentPosition();
+            getPositionId(g_currentPos);
+            g_marker.setVisible(true);
+            g_marker.setPosition(g_currentPos);
+            if(!isFindCurPos && g_currentPos!=null){
+              showInfo(g_currentPos,'Current Location');
+              isFindCurPos=true;
+            }
+            var latlng = {lat:g_currentPos.lat, lng:g_currentPos.lng};
+            posArr.push(latlng);
+        	}, 500);
+          var timer = setInterval(function(){
+            //runSnapToRoad(posArr);
+            posArr = [];
+            if(isRouting){
+              calcRoute();
+              g_map.setCenter(g_currentPos);
+              showDirection();
+            }
+          }, 1000);
+        	setTimeout(function() {g_map.setCenter(g_currentPos);}, 200);
+        }
+  
+        var isRouting = false;
+        function rotue(){
+          isRouting=!isRouting;
+        }
 
     var CLIENT_ID = '1032454829565-mq9a352elo3m505k6eqmp79114brc1lp.apps.googleusercontent.com';
     var KEY = '2OTAi0eufTVRWhCrKB2wivpy';
