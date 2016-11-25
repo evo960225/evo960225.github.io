@@ -30,7 +30,7 @@ function initDirection(){
 				  g_map.fitBounds(place.geometry.viewport);
 				} else {
 				  g_map.setCenter(place.geometry.location);
-				  g_map.setZoom(17);
+				  g_map.setZoom(15);
 				}
 				dmarker = new google.maps.Marker({map:g_map});
 				dmarker.setPlace({
