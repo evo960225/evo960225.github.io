@@ -17,7 +17,7 @@
   <script type="text/javascript" src="js/road.js"></script>
   <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
   <script language="JavaScript" type="text/javascript">
-        var posArr = [];
+  var posArr = [];
         var isFindCurPos =false;
         function initialize() {
           initMap();
@@ -44,13 +44,12 @@
               showDirection();
             }}, 1000);
            setTimeout(function() {g_map.setCenter(g_currentPos);}, 200);
-          }
+         }
   
         var isRouting = false;
         function rotue(){
           isRouting=!isRouting;
         }
-    }
     var CLIENT_ID = '1032454829565-mq9a352elo3m505k6eqmp79114brc1lp.apps.googleusercontent.com';
     var KEY = '2OTAi0eufTVRWhCrKB2wivpy';
     var SCOPES = ["https://www.googleapis.com/auth/calendar"];
@@ -177,7 +176,7 @@
 
 <body onload="initialize()">
 	<input type="text" id="end"  placeholder="Destination location"/><br />
-    <input type="button" value="導航" onclick="buttonClick()" id="direction"/>
+    <input type="button" value="導航" onclick="rotue()" id="direction"/>
        <nav class="navbar navbar-inverse navbar-fixed-top" style="font-size:18px" >
         <div class="container-fluid">
           <div class="navbar-header">
