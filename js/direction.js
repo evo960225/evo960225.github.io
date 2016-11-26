@@ -89,6 +89,7 @@ function getRoute(){
 }
 
 function getDirectionToJava(){
+	if(!window.control.getDirection)return;
 	return window.control.getDirection(g_direct,g_d_msec);
 }
 
