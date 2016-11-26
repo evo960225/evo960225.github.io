@@ -41,6 +41,7 @@
             if(isRouting){
               calcRoute();
               g_map.setCenter(g_currentPos);
+		if(getDirectionToJava)getDirectionToJava();
             }}, 1000);
            setTimeout(function() {g_map.setCenter(g_currentPos);}, 200);
          }
