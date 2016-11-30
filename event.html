@@ -174,7 +174,7 @@
     }
 
     function insertEvent(){
-      //alert('執行insert function');
+      alert('執行insert function');
       var eventName = document.getElementById("insertName").value;
       var eventStartDate = document.getElementById("insertStartDate").value;
       var eventEndDate = document.getElementById("insertEndDate").value;
@@ -194,6 +194,14 @@
           var mm = parseInt(eventEndDate.substr(5,2));
           var yy = parseInt(eventEndDate.substr(0,4));
           var eventEndDate = (yy+'-'+mm+'-'+dd);
+
+          if(dd<10){
+            var eventEndDate = (yy+'-'+mm+'-'+ '0'+ dd);
+          }else{
+            var eventEndDate = (yy+'-'+mm+'-'+dd);
+          }
+
+          alert('eventEndDate' + eventEndDate);
 
           var event = {
             'summary': eventName,
@@ -281,6 +289,11 @@
                       var mm = parseInt(event.end.date.substr(5,2));
                       var yy = parseInt(event.end.date.substr(0,4));
                       var eventEndDate = (yy+'-'+mm+'-'+dd);
+                      if(dd<10){
+                        var eventEndDate = (yy+'-'+mm+'-'+ '0'+ dd);
+                      }else{
+                        var eventEndDate = (yy+'-'+mm+'-'+dd);
+                      }
      
                       document.getElementById("modifyEndDate").value = eventEndDate;
                       document.getElementById("modifyLocation").value=event.location;
@@ -320,9 +333,11 @@
         var dd = parseInt(eventEndDate.substr(8,2))+1;
         var mm = parseInt(eventEndDate.substr(5,2));
         var yy = parseInt(eventEndDate.substr(0,4));
-        var eventEndDate = (yy+'-'+mm+'-'+dd);
-
-
+        if(dd<10){
+          var eventEndDate = (yy+'-'+mm+'-'+ '0'+ dd);
+        }else{
+          var eventEndDate = (yy+'-'+mm+'-'+dd);
+        }
         var event = {
           'calendarId': 'primary',
           'location':eventLocation,
@@ -350,6 +365,8 @@
                     var id = event.id;
                     event.summary = eventName;
                     event.start.date = eventStartDate;
+                    alert('eventStartDate' + eventStartDate);
+                    alert('eventEndDate' + eventEndDate);
                     event.end.date = eventEndDate;
                     event.location = eventLocation;
                     i = events.length + 1;
