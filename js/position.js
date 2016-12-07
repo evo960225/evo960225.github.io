@@ -2,7 +2,9 @@ var g_currentPos;
 var g_curPositionId = "";
 
 function getCurrentPosition(){
+	document.getElementById('end').value = 123;
 	if (navigator.geolocation) {
+		document.getElementById('end').value = 456;
 		navigator.geolocation.getCurrentPosition(function(position) {
 			sendCurrentPositionToJava(position.coords.latitude,position.coords.longitude);
 			g_currentPos = {
@@ -37,8 +39,6 @@ function getPositionId(pos){
 }
 
 function sendCurrentPositionToJava(lat,lng){
-	document.getElementById('end').value = 123;
-	if(lat)document.getElementById('end').value=lat;
 	if(!window.control)return;
 		return window.control.getCurrentPosition(lat,lng);
 }
