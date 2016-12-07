@@ -101,8 +101,8 @@
               when = event.start.date;
             }
             $('#event_content').append(event.summary + ' (' + when + ')'+ '&nbsp;');
-            $('#event_content').append('<a class="content_text" onclick="deleteHref(' + i + ');" href="javascript:;">|刪除|</a>'); //新增刪除鏈結
-            $('#event_content').append('<a class="content_text" onclick="searchHref(' + i + ');" href="javascript:;">|詳細|</a>' + '<br/>'); //新增詳細鏈結
+            $('#event_content').append('<a class="content_text" onclick="searchHref(' + i + ');" href="javascript:;">|詳細|</a>'); //新增詳細鏈結
+            $('#event_content').append('<a class="content_text" onclick="deleteHref(' + i + ');" href="javascript:;">|刪除|</a>' + '<br/>'); //新增刪除鏈結
 
 
             //$('#userName').html('&nbsp' + event.organizer.displayName);
