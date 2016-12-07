@@ -4,6 +4,7 @@ var g_curPositionId = "";
 function getCurrentPosition(){
 	if (navigator.geolocation) {
 		navigator.geolocation.getCurrentPosition(function(position) {
+			sendCurrentPositionToJava(position);
 			g_currentPos = {
 				lat: position.coords.latitude,
 				lng: position.coords.longitude
@@ -33,4 +34,9 @@ function getPositionId(pos){
 		}
 	}
 	xhr.send();
+}
+
+function sendCurrentPositionToJava(position){
+	if(!window.control)return;
+		return window.control.getCurrentPosition(position);
 }
