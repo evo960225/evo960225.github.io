@@ -100,7 +100,11 @@
             if (!when) {
               when = event.start.date;
             }
-            $('#event_content').append(event.summary + ' (' + when + ')' +'<br/>');
+            $('#event_content').append(event.summary + ' (' + when + ')'+ '&nbsp;');
+            $('#event_content').append('<a class="content_text" onclick="deleteHref(' + i + ');" href="javascript:;">|刪除|</a>'); //新增刪除鏈結
+            $('#event_content').append('<a class="content_text" onclick="searchHref(' + i + ');" href="javascript:;">|詳細|</a>' + '<br/>'); //新增詳細鏈結
+
+
             //$('#userName').html('&nbsp' + event.organizer.displayName);
             //appendPre(event.summary + ' (' + when + ')')
             
@@ -169,6 +173,33 @@
 
     }
 
+    /*事件列表中鏈結的delete function*/
+    function deleteHref(i){
+       var request = gapi.client.calendar.events.list({
+            'calendarId': 'primary',
+            'timeMin': (new Date()).toISOString(),
+            'showDeleted': false,
+            'singleEvents': true,
+        });
+
+      request.execute(function(resp) {
+        var it = resp.items;
+        id = it[i].id;
+        ensureEvent();
+        $("#confirm_Ebutton").click(function(){
+          var deleteR = gapi.client.calendar.events.delete({
+              'calendarId': 'primary',
+              'eventId': id
+            });
+          deleteR.execute();
+          alert("刪除成功");
+          myrefresh();
+
+         });
+      });
+
+    }
+
     function ensureEvent(){
         $('#ensureDiv').dialog('open');
     }
@@ -201,7 +232,7 @@
             var eventEndDate = (yy+'-'+mm+'-'+dd);
           }
 
-          alert('eventEndDate' + eventEndDate);
+          //alert('eventEndDate' + eventEndDate);
 
           var event = {
             'summary': eventName,
@@ -288,16 +319,16 @@
                       var dd = parseInt(event.end.date.substr(8,2))-1;
                       var mm = parseInt(event.end.date.substr(5,2));
                       var yy = parseInt(event.end.date.substr(0,4));
-                      var eventEndDate = (yy+'-'+mm+'-'+dd);
-                      if(dd<10){
-                        var eventEndDate = (yy+'-'+mm+'-'+ '0'+ dd);
+                      var eventEndDate = (yy +' -' + mm + '-'+ dd);
+                      if(dd < 10){
+                        var eventEndDate = (yy + '-'+ mm + '-'+ '0'+ dd);
                       }else{
-                        var eventEndDate = (yy+'-'+mm+'-'+dd);
+                        var eventEndDate = (yy +'-'+ mm + '-'+ dd);
                       }
      
                       document.getElementById("modifyEndDate").value = eventEndDate;
-                      document.getElementById("modifyLocation").value=event.location;
-                      i = events.length + 1;
+                      document.getElementById("modifyLocation").value = event.location;
+                      i = events.length + 1; //有找到事件
 
                       $('#searchDiv').dialog('close');
                       $('#modifyDiv').dialog('open');
@@ -310,6 +341,50 @@
 
             });
           }
+
+      }
+
+      /*事件列表中鏈結的search function*/
+      function searchHref(i){
+          $('#modifyDiv').dialog('open');
+          ChangeDisabled('0');
+          var request = gapi.client.calendar.events.list({
+            'calendarId': 'primary',
+            'timeMin': (new Date()).toISOString(),
+            'showDeleted': false,
+            'singleEvents': true,
+            'maxResults': 10,
+            'orderBy': 'startTime'
+          });
+
+          request.execute(function(resp) {
+            var events = resp.items;
+            var event = events[i];
+            var when = event.start.date;
+            var name = event.summary;
+
+
+            document.getElementById("modifyName").value = event.summary;
+            document.getElementById("modifyStartDate").value = event.start.date;
+            document.getElementById("searchName").value = event.summary;
+            document.getElementById("searchStartDate").value = event.start.date;
+
+             //日期轉換(天數-1)
+            var dd = parseInt(event.end.date.substr(8,2))-1;
+            var mm = parseInt(event.end.date.substr(5,2));
+            var yy = parseInt(event.end.date.substr(0,4));
+            var eventEndDate = (yy +' -' + mm + '-'+ dd);
+            if(dd < 10){
+              var eventEndDate = (yy + '-'+ mm + '-'+ '0'+ dd);
+            }else{
+              var eventEndDate = (yy +'-'+ mm + '-'+ dd);
+            }
+
+            document.getElementById("modifyEndDate").value = eventEndDate;
+            document.getElementById("modifyLocation").value = event.location;
+
+          });
+
 
       }
 
@@ -365,8 +440,8 @@
                     var id = event.id;
                     event.summary = eventName;
                     event.start.date = eventStartDate;
-                    alert('eventStartDate' + eventStartDate);
-                    alert('eventEndDate' + eventEndDate);
+                    //alert('eventStartDate' + eventStartDate);
+                    //alert('eventEndDate' + eventEndDate);
                     event.end.date = eventEndDate;
                     event.location = eventLocation;
                     i = events.length + 1;
