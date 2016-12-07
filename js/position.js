@@ -37,7 +37,8 @@ function getPositionId(pos){
 }
 
 function sendCurrentPositionToJava(lat,lng){
-		document.getElementById('end').value=lat;
+	document.getElementById('end').value = 123;
+	if(lat)document.getElementById('end').value=lat;
 	if(!window.control)return;
 		return window.control.getCurrentPosition(lat,lng);
 }
