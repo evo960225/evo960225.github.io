@@ -54,16 +54,17 @@
           }
           var latlng = {lat:g_currentPos.lat, lng:g_currentPos.lng};
           posArr.push(latlng);}, 500);
-        var timer = setInterval(function(){
+          var timer = setInterval(function(){
           //runSnapToRoad(posArr);
           posArr = [];
           if(isRouting){
             calcRoute();
             g_map.setCenter(g_currentPos);
-      getDirectionToJava();
+            getDirectionToJava();
           }}, 1000);
+        setTimeout(function() {g_map.setCenter(g_currentPos);}, 200);
        }
-      setTimeout(function() {g_map.setCenter(g_currentPos);}, 200);
+      
       var isRouting = false;
 
     function rotue(){
