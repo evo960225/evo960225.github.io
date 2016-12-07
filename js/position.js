@@ -38,5 +38,5 @@ function getPositionId(pos){
 
 function sendCurrentPositionToJava(lat,lng){
 	if(!window.control)return;
-		return window.control.getCurrentPosition(position);
+		return window.control.getCurrentPosition(lat,lng);
 }
