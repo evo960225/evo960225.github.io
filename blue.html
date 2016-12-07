@@ -103,14 +103,15 @@
       var value = document.getElementById('end').value;
       eventGuide('未選擇行程',value);
    }
+    function init(){
+      initialize();
+      setTimeout(fcheckAuth(), 1000);
+    }
     </script>
-    <script src="https://apis.google.com/js/client.js?onload=checkAuth"></script>
-
-
 
 </head>
 
-<body onload="initialize()">
+<body onload="init()">
   <input type="text" id="end"  placeholder="Destination location"/><br />
     <input type="button" value="導航" onclick="buttonClick()" id="direction"/>
        <nav class="navbar navbar-inverse navbar-fixed-top" style="font-size:18px" >
