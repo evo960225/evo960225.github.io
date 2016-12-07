@@ -44,6 +44,7 @@
         getCurrentPosition();  
         var timer = setInterval(function(){
           getCurrentPosition();
+          if(!g_currentPos)return;
           g_marker.setVisible(true);
           g_marker.setPosition(g_currentPos);
           if(!isFindCurPos && g_currentPos!=null){
