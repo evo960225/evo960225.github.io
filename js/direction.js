@@ -84,6 +84,7 @@ function getRoute(){
     else if(g_distance<=300){g_d_msec=1000;}
     else if(g_distance<=400){g_d_msec=2000;}
     g_direct = data[i].maneuver;
+    getDirectionToJava();
   }
   return g_distance;
 }
