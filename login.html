@@ -22,6 +22,7 @@
 	      var SCOPES = ["https://www.googleapis.com/auth/calendar"];
 
 	    function checkAuth() {
+
 	    //gapi.client.setApiKey(KEY);
         gapi.auth.authorize(
           {
@@ -41,8 +42,10 @@
        }*/
 
       function handleAuthResult(authResult) {
+        //window.close();
         //var authorizeDiv = document.getElementById('authorize-div');
         if (authResult && !authResult.error) {
+          window.close();
           window.location.replace("event.html");
           loadCalendarApi();
 
@@ -110,6 +113,8 @@
           <span class="infoDivTitle"><b>開發團隊</b></span>
           <hr/>
           <span class="infoDivInt">程翊嘉、羅品璋、林竹婷、王郁蘋</span>
+          <hr/>
+          <span class="infoDivInt" style="font-size:14px">*若有相關問題，請<a href="https://www.facebook.com/groups/747200725393872/" style="color:#D1BBFF">【點擊】</a>來聯絡我們</span>
         </div>
 
     </div>
