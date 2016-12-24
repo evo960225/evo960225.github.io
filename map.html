@@ -69,17 +69,8 @@
 		,loadCalendarApi);
     }
     function loadCalendarApi() {
-      gapi.client.load('oauth2', 'v2', getUserName);
       gapi.client.load('calendar', 'v3', getTodayEventsAndUserName);
     }
-	function getUserName(){
-	  var request = gapi.client.oauth2.userinfo.get().execute(
-            function(resp, raw) {
-              var userName = raw;
-			  $('#userName').html('&nbsp' + userName);
-            }
-      );
-	}
     function signOut() {
       window.location.replace("https://accounts.google.com/logout");
       //window.location.replace("login.html");
@@ -106,6 +97,7 @@
       });
       request.execute(function(resp) {
               var events = resp.items;
+		
               var post = -1 //符合事件數量
               var Today = new Date();
               var yy = Today.getFullYear();
@@ -118,6 +110,9 @@
                 var itDate = (yy + '-' + mm + '-' + dd);
               }
               if (events.length > 0) {
+			  //getname
+			    var userName = events[0].organizer.displayName;
+			    $('#userName').html('&nbsp' + userName);
                 for (i = 0; i < events.length; i++) {
                   var event = events[i];
                   //var when = event.start.dateTime;
