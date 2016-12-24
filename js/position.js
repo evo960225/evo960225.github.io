@@ -2,9 +2,7 @@ var g_currentPos;
 var g_curPositionId = "";
 
 function getCurrentPosition(){
-	document.getElementById('end').value = 123;
 	if (navigator.geolocation) {
-		document.getElementById('end').value = 456;
 		navigator.geolocation.getCurrentPosition(function(position) {
 			sendCurrentPositionToJava(position.coords.latitude,position.coords.longitude);
 			g_currentPos = {
@@ -30,8 +28,11 @@ function getPositionId(pos){
 		if(jdata==null){
 			var tmp=xhr.responseText;
 			if(tmp!=""){
-				jdata = JSON.parse(tmp)["results"][0];
-				g_curPositionId = jdata["place_id"];
+				var tmpdata = JSON.parse(tmp);
+				if(tmpdata != null){
+				  jdata = tmpdata["results"][0];
+				  g_curPositionId = jdata["place_id"];
+				}
 			}
 		}
 	}
