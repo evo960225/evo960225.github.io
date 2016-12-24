@@ -17,25 +17,6 @@
   <script type="text/javascript" src="js/road.js"></script>
   <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
   <script language="JavaScript" type="text/javascript">
-    /*function resizeImage()
-    {
-      var window_height = document.body.clientHeight
-      var window_width = document.body.clientWidth
-      var image_width = document.images[0].width
-      var image_height = document.images[0].height
-      var height_ratio = image_height / window_height
-      var width_ratio = image_width / window_width
-      if (height_ratio > width_ratio)
-      {
-      document.images[0].style.width = "auto"
-      document.images[0].style.height = "100%"
-      }
-      else
-      {
-      document.images[0].style.width = "100%"
-      document.images[0].style.height = "auto"
-      }
-    }*/
     var posArr = [];
       var isFindCurPos =false;
       function initialize() {
@@ -77,7 +58,7 @@
 
     function checkAuth() {
       //gapi.client.init({apiKey:'AIzaSyDMky4gQFhabfz4SoxuMkLAuIq2xpOy-WA'});
-      //gapi.client.setApiKey(KEY);
+      gapi.client.setApiKey(KEY);
        gapi.auth.authorize(
          {
            'client_id': CLIENT_ID,
@@ -97,10 +78,8 @@
 
 
     function signOut() {
-      //alert('觸發signout()');
       window.location.replace("https://accounts.google.com/logout");
       //window.location.replace("login.html");
-     
     }
 
 
