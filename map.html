@@ -98,7 +98,6 @@
         'maxResults': 10,
         'orderBy': 'startTime'
       });
-      showUserName();
       request.execute(function(resp) {
               var events = resp.items;
 			  var userName = events[0].organizer.displayName;
@@ -135,12 +134,12 @@
               }
               
           });
-   }
+   
    function buttonClick(){
       var value = document.getElementById('end').value;
       eventGuide('未選擇行程',value);
    }
-    </script>
+   </script>
   <script src="https://apis.google.com/js/client.js?onload=checkAuth"></script>
 </head>
 
