@@ -62,13 +62,20 @@
     var KEY = '2OTAi0eufTVRWhCrKB2wivpy';
     var SCOPES = ["https://www.googleapis.com/auth/calendar"];
     function checkAuth() {
-      //gapi.client.init({apiKey:'AIzaSyDMky4gQFhabfz4SoxuMkLAuIq2xpOy-WA'});
-      //gapi.client.setApiKey(KEY);
       gapi.auth.authorize({
         'client_id': CLIENT_ID,
         'scope': SCOPES.join(' '),
         'immediate': true}
 		,loadCalendarApi);
+	  gapi.auth.checkAuth().then(
+        function (user) {
+          console.log(user.name + ' is logged in');
+          $state.go('webapp.home'); 
+		},
+        function() {
+          $state.go('login');
+        }
+      );
     }
     function loadCalendarApi() {
       //gapi.client.load('calendar', 'v3', showUserName);
