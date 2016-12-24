@@ -3,7 +3,7 @@ var g_curPositionId = "";
 
 function getCurrentPosition(){
 	if (navigator.geolocation) {
-		navigator.geolocation.getCurrentPosition(function(position) {
+	  navigator.geolocation.getCurrentPosition(function(position) {
 			sendCurrentPositionToJava(position.coords.latitude,position.coords.longitude);
 			g_currentPos = {
 				lat: position.coords.latitude,
@@ -11,10 +11,8 @@ function getCurrentPosition(){
 			};
 			getPositionId(g_currentPos);
 	  }, function() {
-			  alert('get current position error.');
-		});
-	} else {
-		alert('get current position error.');
+			  
+	  });
 	}
 }
 
