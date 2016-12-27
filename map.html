@@ -23,7 +23,7 @@
         initMap();
         initDirection();
         intiRoad();
-        getCurrentPosition();  
+        getCurrentPosition();
         var timer = setInterval(function(){
           getCurrentPosition();
           getPositionId(g_currentPos);
@@ -35,26 +35,26 @@
           }
           var latlng = {lat:g_currentPos.lat, lng:g_currentPos.lng};
           posArr.push(latlng);}, 500);
-		  
+
         var routeTimer = setInterval(function(){
           //runSnapToRoad(posArr);
           posArr = [];
           if(isRouting){
             calcRoute();
+            getRoute();
             g_map.setCenter(g_currentPos);
-            getDirectionToJava();
         }}, 1000);
-         
-		setTimeout(function() {g_map.setCenter(g_currentPos);}, 200);
-		 
-		checkAuth(); 
+
+		    setTimeout(function() {g_map.setCenter(g_currentPos);}, 250);
+
+		    checkAuth();
      }
-	 
+
     var isRouting = false;
     function route(){
        isRouting=!isRouting;
     }
-	
+
 	//---------------------
 	//Calendar
 	//---------------------
@@ -97,7 +97,7 @@
       });
       request.execute(function(resp) {
               var events = resp.items;
-		
+
               var post = -1 //符合事件數量
               var Today = new Date();
               var yy = Today.getFullYear();
@@ -125,13 +125,13 @@
                   }
                 }
                 if(post == -1){
-                     $('#menu').html("<li>沒有事件</li>"); 
+                     $('#menu').html("<li>沒有事件</li>");
                 }
-                
+
               }else{
-                  $('#menu').html("<li>沒有事件</li>"); 
+                  $('#menu').html("<li>沒有事件</li>");
               }
-              
+
       });
    }
    function buttonClick(){
