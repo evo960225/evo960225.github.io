@@ -56,7 +56,7 @@ function calcRoute() {
 	  if (status == google.maps.DirectionsStatus.OK) {
 			g_rotueResponse = response;
 		  directionsDisplay.setDirections(response);
-		  g_map.setZoom(15);
+		  //g_map.setZoom(15);
 		}
 	});
 
@@ -65,6 +65,7 @@ function calcRoute() {
 var g_distance = 0;
 var g_direct;
 var g_d_msec = -1;
+var g_d_end = false;
 function getRoute(){
   var data = g_rotueResponse.routes[0].legs[0].steps;
 
@@ -75,7 +76,6 @@ function getRoute(){
   }
 
   if(i==0)return -1;
-  
   if(g_distance<=500){
     var msec=1000;
     if(g_distance<=50){g_d_msec=100;}
@@ -84,6 +84,8 @@ function getRoute(){
     else if(g_distance<=300){g_d_msec=1000;}
     else if(g_distance<=400){g_d_msec=2000;}
     g_direct = data[i].maneuver;
+		if(data.length<=1 && g_direct<25) g_d_end = true;
+		else g_d_end = false;
     getDirectionToJava();
   }
   return g_distance;
@@ -91,6 +93,11 @@ function getRoute(){
 
 function getDirectionToJava(){
 	if(!window.control)return;
-	return window.control.getDirection(g_direct,g_d_msec);
-}
 
+	if(g_d_end){
+	  window.control.getDirection("turn-left",g_d_msec);
+		window.control.getDirection("turn-right",g_d_msec);
+	}else {
+		window.control.getDirection(g_direct,g_d_msec);
+	}
+}
