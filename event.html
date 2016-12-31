@@ -321,10 +321,14 @@
                       var yy = parseInt(event.end.date.substr(0,4));
                       var eventEndDate = (yy +' -' + mm + '-'+ dd);
                       if(dd < 10){
-                        var eventEndDate = (yy + '-'+ mm + '-'+ '0'+ dd);
-                      }else{
-                        var eventEndDate = (yy +'-'+ mm + '-'+ dd);
+                        dd = '0'+ dd;
+                      };
+
+                      if(mm < 10){
+                       mm = '0' + mm;
                       }
+                      
+                      eventEndDate = (yy +'-' + mm + '-'+ dd);
      
                       document.getElementById("modifyEndDate").value = eventEndDate;
                       document.getElementById("modifyLocation").value = event.location;
@@ -374,12 +378,18 @@
             var mm = parseInt(event.end.date.substr(5,2));
             var yy = parseInt(event.end.date.substr(0,4));
             var eventEndDate = (yy +' -' + mm + '-'+ dd);
-            if(dd < 10){
-              var eventEndDate = (yy + '-'+ mm + '-'+ '0'+ dd);
-            }else{
-              var eventEndDate = (yy +'-'+ mm + '-'+ dd);
-            }
 
+            if(dd < 10){
+              dd = '0'+ dd;
+            };
+
+            if(mm < 10){
+             mm = '0' + mm;
+            }
+            
+            eventEndDate = (yy +'-' + mm + '-'+ dd);
+
+           alert(eventEndDate);
             document.getElementById("modifyEndDate").value = eventEndDate;
             document.getElementById("modifyLocation").value = event.location;
 
@@ -408,11 +418,17 @@
         var dd = parseInt(eventEndDate.substr(8,2))+1;
         var mm = parseInt(eventEndDate.substr(5,2));
         var yy = parseInt(eventEndDate.substr(0,4));
-        if(dd<10){
-          var eventEndDate = (yy+'-'+mm+'-'+ '0'+ dd);
-        }else{
-          var eventEndDate = (yy+'-'+mm+'-'+dd);
+        if(dd < 10){
+          dd = '0'+ dd;
+        };
+
+        if(mm < 10){
+         mm = '0' + mm;
         }
+
+        var eventEndDate = (yy +' -' + mm + '-'+ dd);
+        alert(eventEndDate);
+
         var event = {
           'calendarId': 'primary',
           'location':eventLocation,
