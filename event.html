@@ -417,15 +417,14 @@
         var dd = parseInt(eventEndDate.substr(8,2))+1;
         var mm = parseInt(eventEndDate.substr(5,2));
         var yy = parseInt(eventEndDate.substr(0,4));
-        if(dd < 10){
-          dd = '0'+ dd;
-        };
-
-        if(mm < 10){
-         mm = '0' + mm;
+        if(dd<10){
+          var eventEndDate = (yy+'-'+mm+'-'+ '0'+ dd);
+        }else{
+          var eventEndDate = (yy+'-'+mm+'-'+dd);
         }
 
-        var eventEndDate = (yy +' -' + mm + '-'+ dd);
+       //alert(eventEndDate);
+
         var event = {
           'calendarId': 'primary',
           'location':eventLocation,
