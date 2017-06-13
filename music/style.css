@@ -1,0 +1,124 @@
+@import url(//fonts.googleapis.com/earlyaccess/notosanstc.css);
+body, html {
+	width: 100%; height: 100%; margin: 0; padding: 0;
+	text-align:center;
+	font-family:'Noto Sans TC', serif;
+}
+#menu{
+	background-color:#222;
+	color:#DDD;
+	margin: 0px;
+	padding: 20px 20px;
+	position:absolute;
+	top:0;
+	left:0;
+	right:0;
+	justify-content: right; /* align horizontal */
+	align-items: center;
+}	
+#menu ul{
+	font-size:18px;
+	margin:0;
+}
+#menu ul li a{ 
+	color:#E94;
+}
+#menu ul li a:hover {
+    background-color: #DDD;
+    color: #763;
+}
+#logo{
+	font-size:28px;
+	display:inline;
+	position:absolute;
+	left:30px;
+	top:10px;
+	font-weight:bold;
+}
+#logo a{
+	color:#DC6;
+}
+footer{
+	background-color:#333;
+	color:#A84;
+}	
+table{
+	text-align:center;
+}
+ul{
+	text-align:right;
+	float:right;
+}
+li{
+	display:inline;
+}
+
+a{
+	text-decoration:none;
+	color:#542;
+	padding:12px 8px;
+}
+
+
+#content{
+	padding:30px 15vw;
+	text-align:left;
+}
+
+.list_item{
+	margin:5px;
+	background-color:#FFE;
+	border-style:solid;
+	border-width:2px;
+	border-color:#7AA;
+	color:#974;
+	height:100px;
+	display: flex;
+	justify-content: center; /* align horizontal */
+	align-items: center;
+	font-size:20px;
+}
+.list_item:hover{
+	border-color:#DA4;
+	color:#189;
+}
+div{
+    padding:0px 0px 0px 0px;
+}
+
+td{
+	width:25%;
+	height:20%;
+}
+td a{
+	display: block;
+}
+
+#style_name{
+	font-size:36px;
+	color:#2FD;
+	font-weight:bold;
+	text-shadow: 2px 2px #445;
+}
+
+#content{
+	color:#BD9;
+	text-shadow: 1px 1px #223;
+}
+#music_page{
+	color:#FFF;
+}
+
+#freame{
+	position:absolute;
+	width: 100%; height: 100%;
+	left:0;
+	right:0;
+	bottom:0px;
+}
+.team_mem{
+	margin:30px 400px; 
+	padding:20px;
+	background-color:#FFF; 
+	opacity:0.9;
+}

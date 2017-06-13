@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Music Style</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+</head>
+
+<body>
+	<div height="100%">
+	<div id="menu">
+		<div id="logo"><a href="home.html" target="freame">Music Style</a></div>
+		<ul>
+		<li><a href="home.html" target="freame">首頁</a></li>
+		<li><a href="list.html" target="freame">音樂風格列表</a></li>
+		<li><a href="about.html" target="freame">關於我們</a></li>
+		<li>搜尋：<input id="searchbox" type="text"/></li>
+		</ul>
+	</div>
+	<div style="top: 67px; left: 0; right: 0; bottom: 0;position: absolute;">
+		<iframe id="freame" name="freame" src="home.html" frameborder="0" width="100%"></iframe>
+	</div>
+	</div>
+<script>
+	$("#searchbox").keyup(function(event){
+		if(event.keyCode == 13){
+			open("music.html?name=" + $('#searchbox').val(), 'freame');
+			$("#searchbox").val("");
+		}
+	});
+</script>
+</body>
+</html>

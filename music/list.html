@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+   $(document).ready(function(){
+   			$.getJSON('data.json', function(data) {
+				$.each(data.data, function(i, f) {
+					var item = $('.list_item').get(i);
+					item.parentElement.href = "music.html?id=" +i.toString();
+					item.innerText = f.name ;			
+				});
+			});       
+        }); 
+</script>
+<style>
+	#bg{
+		position:fixed;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		z-index:-1;
+		opacity: 0.7;
+		background-image:url(bg7.jpg);
+		background-repeat: no-repeat;
+		background-attachment: fixed;
+		background-position: center; 
+		background-size: 100% auto;
+	}
+
+</style>
+</head>
+<body>
+<div id="bg"></div>
+<div style="margin-top:50px;">
+	<table style="width:70%;margin:20px 15vw;">
+		<tr>
+			<td><a><div class="list_item"></div></a></td><td><a><div class="list_item"></div></a></td><td><a><div class="list_item"></div></a></td><td><a><div class="list_item"></div></a></td>
+		</tr>                                   
+		<tr>                                    
+			<td><a><div class="list_item"></div></a></td><td><a><div class="list_item"></div></a></td><td><a><div class="list_item"></div></a></td><td><a><div class="list_item"></div></a></td>
+		</tr>                                   
+		<tr>                                    
+			<td><a><div class="list_item"></div></a></td><td><a><div class="list_item"></div></a></td><td><a><div class="list_item"></div></a></td><td><a><div class="list_item"></div></a></td>
+		</tr>
+	</table>
+<div>
+</body>
+</html>

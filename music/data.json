@@ -1,0 +1,44 @@
+{
+  "data" : [ {
+	"youtube" : [{"title":"Charlie Puth - We Don't Talk Anymore","link":"3AtDnEC4zak"}],
+    "content" : "Pop(全稱Pop Music)，最初通常被視為單曲排行榜上的音樂，榜上也包含各種不同類型音樂。後續POP的使用法上越來越多變，根據The New Grove Dictionary Of Music and Musicians的定義自1800年代後最符合種產階級口味與喜好的音樂。後續搖滾音樂興起，Pop與其有所區分，成為流行音樂的一條支線。先今Pop特色大略為能吸引各種不同文化背景上的聽眾，擴大市場做商業化鑽取利潤。音樂歌詞的內容多聚焦在一個簡單的主題，例如愛情。音樂架構多變，可泛指不同類型音樂。",
+    "name" : "Pop"
+  }, {
+    "youtube" : [{"title":"周杰倫-青花瓷 Blue and White Porcelain","link":"Z8Mqw0b9ADs"}],
+    "content" : "前期定義為西方民族流傳或是傳統音樂，不限一種文化甚至能融合出新風格。後期推廣到非西方促進全球化，形式逐漸增加。",
+    "name" : "World Music"
+  }, {
+    "youtube" : [{"title":"George Winston: December","link":"f5qGUhWPi6w"}],
+    "content" : "又翻作新紀元音樂，由20世紀70至80年代新紀元運動開始提倡潔浄心靈的音樂。NEW AGE是種冥想、寧靜心思、洗滌心靈的音樂，通常歌唱的部分佔比較少。 New Age只要區分的重點在於能詮釋精神，或者營造出大自然的氣氛或宇宙浩瀚的感覺，以洗滌聽者的心靈。New Age也可做治療、冥想靜坐等用途。",
+    "name" : "New Age"
+  }, {
+	"youtube" : [{"title":"Harold Melvin & The Blue Notes-Wake Up Everybody","link":"2HhV3Slqtvw"}],
+    "content" : "台灣翻作節奏藍調。由Blues與Jazz融合，最初源自於非裔美國人。特色在於使用Jazz的搖擺節奏與Blues的唱腔、合聲方式，大部份R&B歌曲為4拍一小節，12節一段落，節奏感強、輕快而不像藍調那樣悲傷。",
+    "name" : "R&B\n(Rhythm & Blues)"
+  }, {
+	"youtube" : [{"title":"SMiLE.dk-Butterfly","link":"B_qwUS8Uqjg"}],
+    "content" : "Electronic Music電子音樂是使用電子儀器和音樂科技來製作的音樂，包含電子樂器、混音器、電腦音樂等。後續影響許多曲風出現像是Disco、House。現今多數音樂都有包含在內",
+    "name" : "Electronic"
+  }, {
+	"youtube" : [{"title":"大支 feat.達賴喇嘛 - \"人\"","link":"_VpcRXNNZUg"}],
+    "content" : "HipHop被視為一種文化和藝術運動，HipHop Music源自於HipHop文化，也被人直接稱為HipHop。HipHop Music特色在於強烈的節奏感加上說話，而說話需伴隨節奏和押韻。歌詞常會出現挑釁或髒話但也不代表每首歌都是如此，整首歌的歌詞相對比曲重要。",
+    "name" : "Rap/HipHop"
+  }, {
+	"youtube" : [{"title":"Earth, Wind & Fire - Boogie Wonderland","link":"god7hAPv8f0"}],
+    "content" : "Disco本身意思是來自法文的discothèque，指會撥放跳舞音樂的舞廳，也就是說說Disco Music跟跳舞是不可分的關係。Disco Music起源於美國非洲裔和拉丁裔社區，特點上來說是一個節奏強烈，讓人想舞動的歌曲，舞者可以不拘束於動作，自由活動自己的肢體表現出自己的個性，抒發自己的心情。",
+    "name" : "Disco"
+  }, {
+	"youtube" : [{"title":"Banaroo - Space Cowboy","link":"5t0z_Hftf4o"}],
+    "content" : "House風格原至於Disco，也算是Disco的一種。於80年代中期美國芝加哥的夜店叫做Warehouse，裡面的DJ嘗試各種混音技巧。House特色在於採用4/4節拍，與Disco一樣節奏感強烈且適合跳舞，最大的不同在於混音，只要有設備一個人也能完成曲子。House有很多分支像:Acid House、Deep House、Epic House、Trible House等。",
+    "name" : "House"
+  }, {
+	"youtube" : [{"title":" Maurizio DeJorio - Running in The 90s","link":"5t0z_Hftf4o"}],
+    "content" : "Super Eurobeat原至於Italo Disco發展出來的Eurobeat，混合Happy Hardcore所產生，這種風格在日本頗為流行。與Disco主要差異在歌曲歌曲結構上的不同，歌曲開頭段落結束後就進入最High的份，歌曲通常偏快。",
+    "name" : "SEB\n(Super Eurobeat)"
+  }, {
+	"youtube" : [{"title":"Rebecca Pidgeon - Spanish Harlem","link":"uKkeWt2MxWM"}],
+    "content" : "爵士樂源自藍調，主流使用的樂器有銅管、簧管和鼓。因起源於黑人之間，爵士樂風格自由，節拍間有獨特的韻味(幽靈音)、且以即興演奏為特色。爵士音樂風格有Swing (搖擺樂) Bebop (咆勃樂) Free Jazz(自由爵士) 以及 Fusion (融合爵士) 等等",
+    "name" : "Jazz"
+  }
+  ]
+}

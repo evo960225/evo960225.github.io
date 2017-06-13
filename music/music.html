@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>DOTO</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+   $(document).ready(function(){
+            function init_data(data_val){
+                $('#style_name').text(data_val.name);   
+				$('#content').text(data_val.content);   
+				$('#youtube_title').text(data_val.youtube[0].title);  
+				$("<iframe id='youtube' width='560' height='315' frameborder='0'  allowfullscreen></iframe>")
+				.attr("src","https://www.youtube.com/embed/" + data_val.youtube[0].link)
+				.appendTo("#youtube");
+            }
+            var arr=location.search.split('&');
+			for(var i in arr){
+				var id=arr[i].split("=")[0];
+				var val=arr[i].split("=")[1];
+				if (id == "?id") {
+					$.getJSON('data.json', function(data) {
+						$.each(data.data, function(i, f) {
+							if(val==i){
+								init_data(f);
+							}
+						});
+					});
+				}else if(id == "?name"){
+					$.getJSON('data.json', function(data) {
+						$.each(data.data, function(i, f) {
+							if(f.name.toLowerCase().indexOf(val.toLowerCase())>=0){
+								init_data(f);
+							}
+						});
+					});
+				}
+			}
+			          
+        }); 
+</script>
+<style>
+#bg{
+	position:fixed;
+	top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+	z-index:-1;
+	opacity: 0.9;
+	background-image:url(bg4.jpg);
+	background-repeat: no-repeat;
+    background-attachment: fixed;
+	background-position: center; 
+	background-size: 100% auto;
+}
+
+</style>
+</head>
+<body>
+<div id="bg"></div>
+<div id="mark" style="opacity:0.3;z-index:-1; position:fixed;top:0;left:10%;right:10%;height:100%; background-color:#222;text-align:center;"></div>
+	<div id="music_page" style="padding:50px">
+		<div id="style_name" style="margin:20px;"></div>
+		<div id="content" style="font-size:20px"></div>
+		<br>
+		<div id="youtube_title" style="font-size:24px"></div>
+		<div id="youtube"></div>
+	</div>
+</body>
+</html>
