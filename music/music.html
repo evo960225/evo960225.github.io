@@ -30,7 +30,7 @@
 				}else if(id == "?name"){
 					$.getJSON('data.json', function(data) {
 						$.each(data.data, function(i, f) {
-							if(f.name.toLowerCase().indexOf(val.toLowerCase())>=0){
+							if(f.name.toLowerCase().indexOf(val.toLowerCase().replace("%20"," "))>=0){
 								init_data(f);
 							}
 						});
