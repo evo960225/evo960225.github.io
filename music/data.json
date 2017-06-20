@@ -39,6 +39,14 @@
 	"youtube" : [{"title":"Rebecca Pidgeon - Spanish Harlem","link":"uKkeWt2MxWM"}],
     "content" : "爵士樂源自藍調，主流使用的樂器有銅管、簧管和鼓。因起源於黑人之間，爵士樂風格自由，節拍間有獨特的韻味(幽靈音)、且以即興演奏為特色。爵士音樂風格有Swing (搖擺樂) Bebop (咆勃樂) Free Jazz(自由爵士) 以及 Fusion (融合爵士) 等等",
     "name" : "Jazz"
+  }, {
+	"youtube" : [{"title":"","link":""}],
+    "content" : "",
+    "name" : "Blues"
+  }, {
+	"youtube" : [{"title":"","link":""}],
+    "content" : "",
+    "name" : "A Cappella"
   }
   ]
 }
